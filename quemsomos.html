@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Quem Somos | GSIM Brasil</title>
+    <meta name="description" content="Conheça a GSIM Brasil: grupo de comunicação com propósito, nascido do audiovisual, que une tradição e inovação para criar histórias que conectam corações.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --ebano: #050505;
+            --canarinho: #FDC41F;
+            --ceu-azul: #3793D1;
+            --branco: #FFFFFF;
+            --border: rgba(255, 255, 255, 0.15);
+            --easing: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--ebano);
+            color: var(--branco);
+            font-family: 'Commissioner', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .text-highlight { color: var(--canarinho); }
+        .key-highlight { color: var(--canarinho); }
+
+        /* HEADER (mesmo estilo da home) */
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 35px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            display: block;
+        }
+
+        .menu-desktop {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .nav-link:hover { opacity: 1; color: var(--canarinho); }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 40%;
+            height: 2px;
+            background: var(--canarinho);
+        }
+
+        .btn-header {
+            padding: 10px 25px;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-header:hover { background: white; color: var(--ebano); border-color: white; }
+
+        .mobile-toggle { display: none; font-size: 1.8rem; color: white; cursor: pointer; z-index: 1002; }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--ebano);
+            z-index: 1001;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            gap: 40px;
+            transform: translateY(-100%);
+            transition: transform 0.5s var(--easing);
+        }
+        .mobile-menu-overlay.active { transform: translateY(0); }
+
+        .mobile-link {
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        /* HERO QUEM SOMOS */
+        main { margin-top: 90px; }
+
+        .hero-about {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-about::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(5,5,5,0) 0%, rgba(5,5,5,0.9) 75%);
+            z-index: 1;
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.42;
+            filter: grayscale(100%) contrast(1.15);
+        }
+
+        .hero-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-about-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 40px 20px 60px;
+        }
+
+        .breadcrumb {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #b3b3b3;
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb a { color: #b3b3b3; }
+        .breadcrumb a:hover { color: var(--canarinho); }
+
+        .hero-about-title {
+            font-size: clamp(2.4rem, 7vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            margin-bottom: 20px;
+        }
+
+        .hero-about-sub {
+            font-size: 1rem;
+            max-width: 620px;
+            margin: 0 auto;
+            color: #e0e0e0;
+            font-weight: 300;
+        }
+
+        .blink-tech-footer {
+            background: linear-gradient(
+                90deg,
+                #000000,
+                #3a2a00,
+                #FDC41F,
+                #3a2a00,
+                #000000
+            );
+            background-size: 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: footerPulse 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 12px rgba(253,196,31,0.35));
+        }
+
+        @keyframes footerPulse {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .section-padding {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-kicker {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 16px;
+        }
+
+        .about-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .about-title span { color: var(--canarinho); }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: #d0d0d0;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        .about-side-card {
+            border: 1px solid var(--border);
+            padding: 30px 26px;
+            border-radius: 4px;
+            background: radial-gradient(circle at top, rgba(253,196,31,0.08), rgba(5,5,5,1));
+        }
+
+        .about-side-card h3 {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #bbbbbb;
+            margin-bottom: 14px;
+        }
+
+        .about-side-card p {
+            font-size: 0.98rem;
+            color: #d6d6d6;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .pillar-card {
+            padding: 32px 26px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .pillar-label {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .pillar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .pillar-text {
+            font-size: 0.95rem;
+            color: #c8c8c8;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .crazy-icon {
+            width: 40px;
+            height: 6px;
+            background: linear-gradient(90deg, var(--canarinho), var(--ceu-azul), var(--branco));
+            background-size: 300%;
+            animation: crazyShift 3s infinite linear;
+            margin-bottom: 18px;
+        }
+        @keyframes crazyShift {
+            0% {background-position:0% 50%;}
+            100% {background-position:100% 50%;}
+        }
+
+        .clients-section {
+            background: #080808;
+        }
+
+        .section-title {
+            font-size: 2.3rem;
+            margin-bottom: 28px;
+            font-weight: 800;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 26px;
+            margin-top: 20px;
+        }
+
+        .client-tag {
+            padding: 12px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            color: #e0e0e0;
+        }
+
+        .cta-bottom {
+            background: var(--canarinho);
+            color: var(--ebano);
+            text-align: center;
+            padding: 90px 20px;
+        }
+
+        .cta-bottom h2 {
+            font-size: clamp(2.4rem, 7vw, 3.6rem);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            margin-bottom: 24px;
+        }
+
+        .btn-big-footer {
+            display: inline-block;
+            padding: 18px 60px;
+            background: var(--ebano);
+            color: var(--canarinho);
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+            border: 2px solid var(--ebano);
+        }
+
+        .btn-big-footer:hover {
+            background: var(--canarinho);
+            color: var(--ebano);
+        }
+
+        footer {
+            background: var(--canarinho);
+            color: var(--ebano);
+            padding: 50px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.85rem;
+            color: var(--ebano);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            opacity: 0.7;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            display: block;
+            color: var(--ebano);
+            text-decoration: none;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .footer-copyright {
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 20px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: rgba(0,0,0,0.6);
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            text-decoration: none;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .menu-desktop { display: none; }
+            .mobile-toggle { display: block; }
+            .about-grid,
+            .pillars-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-padding { padding: 70px 0; }
+            .hero-about { min-height: 60vh; }
+            .hero-about-title { font-size: 2.2rem; }
+            .hero-about-sub { font-size: 0.98rem; }
+            .cta-bottom h2 { font-size: 2.2rem; }
+            .footer-copyright {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENU MOBILE -->
+    <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+        <a href="index.html" class="mobile-link" onclick="toggleMenu()">Home</a>
+        <a href="quem-somos.html" class="mobile-link" onclick="toggleMenu()" style="color:var(--canarinho)">Quem Somos</a>
+        <a href="index.html#servicos" class="mobile-link" onclick="toggleMenu()">O que fazemos</a>
+        <a href="index.html#cases" class="mobile-link" onclick="toggleMenu()">Portfólio</a>
+        <a href="index.html#contato" class="mobile-link" onclick="toggleMenu()">Contato</a>
+        <div onclick="toggleMenu()" style="position:absolute; top:30px; right:30px; color:white; font-size:2rem; cursor:pointer;">&times;</div>
+    </div>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo-white.png" alt="GSIM Brasil">
+            </a>
+
+            <nav class="menu-desktop" aria-label="Navegação principal">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="quem-somos.html" class="nav-link active">Quem Somos</a>
+                <a href="index.html#servicos" class="nav-link">O Que Fazemos</a>
+                <a href="index.html#cases" class="nav-link">Portfólio</a>
+                <div>
+                    <a href="index.html#contato" class="btn-header">Contato</a>
+                </div>
+            </nav>
+
+            <div class="mobile-toggle" onclick="toggleMenu()"><i class="lni lni-menu"></i></div>
+        </div>
+    </header>
+
+    <a href="https://wa.me/5521986212411" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+        <i class="lni lni-whatsapp"></i>
+    </a>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero-about" aria-labelledby="titulo-quem-somos">
+            <div class="hero-media" aria-hidden="true">
+                <!-- troque esta imagem por uma foto real de bastidor / estúdio -->
+                <img src="quem-somos-hero.jpg" alt="">
+            </div>
+            <div class="hero-about-content container">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> › Quem Somos
+                </div>
+                <h1 id="titulo-quem-somos" class="hero-about-title">
+                    NÓS SOMOS A <span class="blink-tech-footer">GSIM BRASIL</span>
+                </h1>
+                <p class="hero-about-sub">
+                    Um grupo de comunicação nascido do audiovisual, moldado pelo tempo, pela fé e por um propósito:
+                    transformar histórias em experiências que conectam corações e elevam marcas.
+                </p>
+            </div>
+        </section>
+
+        <!-- BLOCO PRINCIPAL: DESIGN + PROPÓSITO -->
+        <section class="section-padding">
+            <div class="container about-grid">
+                <div>
+                    <p class="about-kicker">COMUNICAÇÃO COM PROPÓSITO</p>
+                    <h2 class="about-title">
+                        Comunicação que <span>toca</span>, histórias que <span>transformam</span>.
+                    </h2>
+                    <div class="about-text">
+                        <p>
+                            A GSIM Brasil acredita no poder da imagem que emociona e da beleza que inspira. Cada frame é pensado
+                            para carregar sentido, verdade e coerência com aquilo em que acreditamos: uma comunicação que eleva,
+                            resgata e constrói. :contentReference[oaicite:1]{index=1}
+                        </p>
+                        <p>
+                            Nascemos do audiovisual e fomos lapidados pelo tempo, pela fé e pela missão de impactar o mundo com
+                            o que há de mais verdadeiro, belo e bom. Unimos tradição e inovação para ir além do conteúdo: criamos
+                            experiências que despertam virtudes, fortalecem marcas e aproximam pessoas.
+                        </p>
+                        <p>
+                            Cada projeto é um chamado. Cada história, uma oportunidade de dizer “sim” ao propósito, ao talento e
+                            à transformação — sempre com o Brasil no centro do nosso olhar.
+                        </p>
+                    </div>
+                </div>
+
+                <aside class="about-side-card">
+                    <div class="crazy-icon"></div>
+                    <h3>Nosso manifesto</h3>
+                    <p>
+                        Somos parceiros, somos família e seguimos fiéis ao que acreditamos: comunicação com propósito que
+                        transforma. A cada produção, reafirmamos o nosso “sim” à criatividade, à responsabilidade com as
+                        narrativas e ao impacto positivo na vida real das pessoas.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- PILARES: DESIGN / PROPÓSITO / COMPROMISSO -->
+        <section class="section-padding" style="background:linear-gradient(to bottom, #050505, #000000);">
+            <div class="container">
+                <h2 class="section-title">Nossos <span class="text-highlight">pilares</span></h2>
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="crazy-icon"></div>
+                        <div class="pillar-label">Pilar 01</div>
+                        <div class="pillar-title">Design que inspira</div>
+                        <p class="pillar-text">
+                            Cada enquadramento, luz e textura é pensado para tocar. Não é estética vazia: é forma a serviço
+                            de uma mensagem que precisa ser lembrada, sentida e compartilhada.
+                        </p>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="crazy-icon"></div>
+                        <div class="pillar-label">Pilar 02</div>
+                        <div class="pillar-title">Propósito claro</div>
+                        <p class="pillar-text">
+                            Contamos histórias que despertam o melhor nas pessoas e nas marcas. Projetos que buscam virtude,
+                            verdade e sentido de missão — dentro e fora da tela.
+                        </p>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="crazy-icon"></div>
+                        <div class="pillar-label">Pilar 03</div>
+                        <div class="pillar-title">Compromisso com o impacto</div>
+                        <p class="pillar-text">
+                            Somos fiéis ao que acreditamos. Nosso compromisso é com resultados concretos, relações de longo
+                            prazo e com uma comunicação que transforma realidades, não só métricas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIENTES -->
+        <section class="section-padding clients-section">
+            <div class="container">
+                <h2 class="section-title">Nossos <span class="text-highlight">clientes</span></h2>
+                <p style="max-width:640px; color:#d0d0d0; font-weight:300; line-height:1.7; margin-bottom:26px;">
+                    Ao longo de mais de 16 anos, caminhamos ao lado de marcas que acreditam na força de histórias bem contadas.
+                    De grandes empresas a projetos autorais, nossa relação é sempre construída na base da parceria e da confiança.
+                </p>
+
+                <!-- aqui você pode trocar pelos logos reais -->
+                <div class="clients-grid">
+                    <div class="client-tag">Beleza & Cosméticos</div>
+                    <div class="client-tag">Educação & Saúde</div>
+                    <div class="client-tag">Indústria & Serviços</div>
+                    <div class="client-tag">ONGs & Projetos sociais</div>
+                    <div class="client-tag">Marcas globais</div>
+                    <div class="client-tag">Negócios em crescimento</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="cta-bottom">
+            <div class="container" style="text-align:center;">
+                <h2>Vamos criar algo <span class="blink-tech-footer">extraordinário</span> juntos?</h2>
+                <p style="max-width:540px; margin:0 auto 28px; font-size:0.98rem; font-weight:400;">
+                    Se a sua marca também acredita em histórias que tocam, elevam e transformam, a GSIM está pronta para
+                    estar ao seu lado no próximo capítulo.
+                </p>
+                <a href="mailto:contato@simfilmes.com.br" class="btn-big-footer">Iniciar projeto</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SÃO PAULO</h4>
+                    <p>R. Simão Alvares 356<br>Pinheiros - 8º Andar</p>
+                </div>
+                <div class="footer-col">
+                    <h4>RIO DE JANEIRO</h4>
+                    <p>Praça do Flamengo 66<br>Flamengo</p>
+                </div>
+                <div class="footer-col">
+                    <h4>CONTATO</h4>
+                    <p>+55 21 98621-2411</p>
+                    <div style="margin-top:15px">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Vimeo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <span>© 2025 GSIM Brasil. Todos os direitos reservados.</span>
+                <span>Design: GSIM Studio</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

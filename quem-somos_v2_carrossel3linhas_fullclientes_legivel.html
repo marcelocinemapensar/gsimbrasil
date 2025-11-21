@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Quem Somos | GSIM Brasil</title>
+    <meta name="description" content="GSIM Brasil é um grupo de comunicação com DNA cinematográfico, foco em propósito e 16 anos de histórias que conectam corações.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --ebano: #050505;
+            --canarinho: #FDC41F;
+            --ceu-azul: #3793D1;
+            --branco: #FFFFFF;
+            --border: rgba(255, 255, 255, 0.15);
+            --easing: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--ebano);
+            color: var(--branco);
+            font-family: 'Commissioner', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .text-highlight { color: var(--canarinho); }
+        .key-highlight { color: var(--canarinho); }
+
+        /* HEADER (sinergia com a home) */
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 35px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            display: block;
+        }
+
+        .menu-desktop {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .nav-link:hover { opacity: 1; color: var(--canarinho); }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 40%;
+            height: 2px;
+            background: var(--canarinho);
+        }
+
+        .btn-header {
+            padding: 10px 25px;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-header:hover { background: white; color: var(--ebano); border-color: white; }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--ebano);
+            z-index: 1001;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            gap: 40px;
+            transform: translateY(-100%);
+            transition: transform 0.5s var(--easing);
+        }
+        .mobile-menu-overlay.active { transform: translateY(0); }
+
+        .mobile-link {
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        main { margin-top: 90px; }
+
+        /* HERO QUEM SOMOS – mais impacto, fontes maiores */
+        .hero-about {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top, rgba(253,196,31,0.18), transparent 55%),
+                radial-gradient(circle at bottom, rgba(55,147,209,0.12), transparent 55%),
+                #050505;
+            z-index: 0;
+        }
+
+        .hero-about-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 840px;
+            padding: 40px 20px 80px;
+        }
+
+        .breadcrumb {
+            font-size: 0.78rem;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            color: #b3b3b3;
+            margin-bottom: 16px;
+        }
+        .breadcrumb a { color: #b3b3b3; }
+        .breadcrumb a:hover { color: var(--canarinho); }
+
+        .hero-kicker {
+            font-size: 0.82rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 18px;
+        }
+
+        .hero-about-title {
+            font-size: clamp(2.8rem, 8vw, 4.6rem);
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            line-height: 1.05;
+            margin-bottom: 22px;
+        }
+
+        .hero-about-title span.blink-tech {
+            background: linear-gradient(90deg, var(--canarinho), #ffffff, var(--ceu-azul), var(--canarinho));
+            background-size: 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientPulse 6s infinite ease-in-out;
+        }
+
+        @keyframes gradientPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-about-sub {
+            font-size: 1.05rem;
+            max-width: 640px;
+            margin: 0 auto 32px;
+            color: #e0e0e0;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 22px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #cfcfcf;
+        }
+
+        .hero-pill-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--canarinho);
+            box-shadow: 0 0 12px rgba(253,196,31,0.6);
+        }
+
+        .section-padding {
+            padding: 110px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Bloco Essência */
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+            gap: 70px;
+            align-items: flex-start;
+        }
+
+        .about-kicker {
+            font-size: 0.82rem;
+            letter-spacing: 2.3px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 18px;
+        }
+
+        .about-title {
+            font-size: 2.7rem;
+            font-weight: 800;
+            margin-bottom: 26px;
+            line-height: 1.1;
+        }
+
+        .about-title span { color: var(--canarinho); }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: #d0d0d0;
+            line-height: 1.9;
+            margin-bottom: 18px;
+            font-weight: 300;
+        }
+
+        .about-numbers {
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 26px 26px 20px;
+            background: radial-gradient(circle at top, rgba(253,196,31,0.08), rgba(5,5,5,1));
+        }
+
+        .about-numbers-title {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #bdbdbd;
+            margin-bottom: 18px;
+        }
+
+        .about-numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 20px 26px;
+        }
+
+        .number-item h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+        }
+        .number-item p {
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #c7c7c7;
+            margin-top: 4px;
+        }
+
+        /* Histórica em atos */
+        .acts {
+            background: radial-gradient(circle at top, rgba(253,196,31,0.12), transparent 60%), #050505;
+        }
+
+        .acts-header {
+            max-width: 720px;
+            margin-bottom: 40px;
+        }
+
+        .acts-kicker {
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #9f9f9f;
+            margin-bottom: 14px;
+        }
+
+        .acts-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .acts-text {
+            font-size: 1.02rem;
+            color: #d6d6d6;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .acts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 26px;
+        }
+
+        .act-card {
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 24px 22px;
+            background: rgba(12,12,12,0.95);
+        }
+
+        .act-tag {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #bbbbbb;
+            margin-bottom: 10px;
+        }
+
+        .act-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .act-text {
+            font-size: 0.96rem;
+            color: #d0d0d0;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Jeito GSIM */
+        .flow-grid {
+            display: grid;
+            grid-template-columns: minmax(0,1.3fr) minmax(0,1fr);
+            gap: 60px;
+            align-items: center;
+        }
+
+        .flow-steps {
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 24px 22px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .flow-step {
+            display: grid;
+            grid-template-columns: auto minmax(0,1fr);
+            gap: 14px 16px;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .flow-step:last-child { border-bottom: none; }
+
+        .flow-num {
+            width: 26px; height: 26px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--canarinho);
+        }
+
+        .flow-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .flow-text {
+            grid-column: 2;
+            font-size: 0.94rem;
+            color: #d4d4d4;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .flow-note {
+            font-size: 0.88rem;
+            color: #a8a8a8;
+            margin-top: 12px;
+        }
+
+        .flow-side-text {
+            font-size: 1.04rem;
+            color: #dcdcdc;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .flow-side-text strong { color: var(--canarinho); }
+
+        
+        /* Clientes & setores */
+        .clients-section {
+            background: #080808;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .clients-wrapper {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .clients-row {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clients-track {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            width: max-content;
+        }
+
+        .clients-track.row-1 {
+            animation: logosScrollLeft 45s linear infinite;
+        }
+
+        .clients-track.row-2 {
+            animation: logosScrollRight 55s linear infinite;
+        }
+
+        .clients-track.row-3 {
+            animation: logosScrollLeft 65s linear infinite;
+        }
+
+        .client-logo {
+            flex: 0 0 auto;
+            padding: 14px 28px;
+            border-radius: 999px;
+            background: #ffffff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 170px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+        }
+
+        .client-logo img {
+            max-height: 52px;
+            max-width: 150px;
+            width: auto;
+            height: auto;
+            filter: none;
+            opacity: 0.96;
+            transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .client-logo img:hover {
+            opacity: 1;
+            transform: scale(1.06);
+        }
+
+        @keyframes logosScrollLeft {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes logosScrollRight {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* CTA final */
+        .cta-bottom {
+            background: var(--canarinho);
+            color: var(--ebano);
+            text-align: center;
+            padding: 90px 20px;
+        }
+
+        .cta-bottom h2 {
+            font-size: clamp(2.6rem, 7.2vw, 3.8rem);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            margin-bottom: 24px;
+        }
+
+        .cta-bottom h2 span {
+            background: linear-gradient(90deg, #000000, #3a2a00, #FDC41F, #3a2a00, #000000);
+            background-size: 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: footerPulse 8s ease-in-out infinite;
+        }
+
+        .cta-bottom p {
+            max-width: 540px;
+            margin: 0 auto 28px;
+            font-size: 0.98rem;
+            font-weight: 500;
+        }
+
+        .btn-big-footer {
+            display: inline-block;
+            padding: 18px 60px;
+            background: var(--ebano);
+            color: var(--canarinho);
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+            border: 2px solid var(--ebano);
+        }
+
+        .btn-big-footer:hover {
+            background: var(--canarinho);
+            color: var(--ebano);
+        }
+
+        footer {
+            background: var(--canarinho);
+            color: var(--ebano);
+            padding: 50px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.85rem;
+            color: var(--ebano);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            opacity: 0.7;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            display: block;
+            color: var(--ebano);
+            text-decoration: none;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .footer-copyright {
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 20px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: rgba(0,0,0,0.6);
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            text-decoration: none;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .menu-desktop { display: none; }
+            .mobile-toggle { display: block; }
+            .section-padding { padding: 80px 0; }
+            .hero-about { min-height: 80vh; }
+            .hero-about-title { font-size: 2.4rem; }
+            .about-grid,
+            .acts-grid,
+            .flow-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .acts-grid { gap: 20px; }
+            .about-title { font-size: 2.1rem; }
+            .section-title { font-size: 2.1rem; }
+            .footer-copyright {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENU MOBILE -->
+    <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+        <a href="index.html" class="mobile-link" onclick="toggleMenu()">Home</a>
+        <a href="quem-somos.html" class="mobile-link" onclick="toggleMenu()" style="color:var(--canarinho)">Quem Somos</a>
+        <a href="index.html#servicos" class="mobile-link" onclick="toggleMenu()">O que fazemos</a>
+        <a href="index.html#cases" class="mobile-link" onclick="toggleMenu()">Portfólio</a>
+        <a href="index.html#contato" class="mobile-link" onclick="toggleMenu()">Contato</a>
+        <div onclick="toggleMenu()" style="position:absolute; top:30px; right:30px; color:white; font-size:2rem; cursor:pointer;">&times;</div>
+    </div>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo-white.png" alt="GSIM Brasil">
+            </a>
+
+            <nav class="menu-desktop" aria-label="Navegação principal">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="quem-somos.html" class="nav-link active">Quem Somos</a>
+                <a href="index.html#servicos" class="nav-link">O Que Fazemos</a>
+                <a href="index.html#cases" class="nav-link">Portfólio</a>
+                <div>
+                    <a href="index.html#contato" class="btn-header">Contato</a>
+                </div>
+            </nav>
+
+            <div class="mobile-toggle" onclick="toggleMenu()"><i class="lni lni-menu"></i></div>
+        </div>
+    </header>
+
+    <a href="https://wa.me/5521986212411" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+        <i class="lni lni-whatsapp"></i>
+    </a>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero-about" aria-labelledby="titulo-quem-somos">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-about-content container">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> › Quem Somos
+                </div>
+                <div class="hero-kicker">GRUPO SIM BRASIL</div>
+                <h1 id="titulo-quem-somos" class="hero-about-title">
+                    COMUNICAÇÃO<br>
+                    COM <span class="blink-tech">PROPÓSITO</span>.
+                </h1>
+                <p class="hero-about-sub">
+                    A GSIM Brasil é um grupo de comunicação com DNA cinematográfico. Nascemos do audiovisual,
+                    crescemos com grandes marcas e seguimos fiéis a uma ideia simples e poderosa:
+                    <span class="text-highlight">histórias bem contadas transformam pessoas, negócios e realidades.</span>
+                </p>
+                <div class="hero-pill">
+                    <span class="hero-pill-dot"></span>
+                    <span>Imagem que toca • Beleza que inspira • Conteúdo que transforma</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESSÊNCIA -->
+        <section class="section-padding">
+            <div class="container about-grid">
+                <div>
+                    <p class="about-kicker">NOSSA ESSÊNCIA</p>
+                    <h2 class="about-title">
+                        Não é só sobre vídeo.<br>
+                        É sobre <span>impacto real</span>.
+                    </h2>
+                    <div class="about-text">
+                        <p>
+                            Ao longo de mais de <span class="text-highlight">16 anos</span>, a GSIM Brasil construiu um repertório
+                            que une cinema, publicidade e storytelling em projetos que deixam marca. Trabalhamos para que cada
+                            filme, cada peça e cada experiência carregue verdade, beleza e propósito.
+                        </p>
+                        <p>
+                            Acreditamos na potência da imagem que emociona, da narrativa que reconcilia pessoas com o que há de
+                            melhor dentro delas e de marcas que se posicionam com clareza de valores. Para nós, <span class="text-highlight">
+                            comunicação é vocação</span>, não apenas serviço.
+                        </p>
+                        <p>
+                            Por isso, desenhamos jornadas completas: da estratégia ao roteiro, da filmagem à entrega, sempre
+                            guiados por uma pergunta central: <strong class="text-highlight">“qual transformação este projeto
+                            pode gerar na vida real?”</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <aside class="about-numbers">
+                    <div class="about-numbers-title">ALGUNS MARCOS DA NOSSA HISTÓRIA</div>
+                    <div class="about-numbers-grid">
+                        <div class="number-item">
+                            <h3>16+</h3>
+                            <p>ANOS DE ESTRADA</p>
+                        </div>
+                        <div class="number-item">
+                            <h3>SP/RJ</h3>
+                            <p>BASES ESTRATÉGICAS</p>
+                        </div>
+                        <div class="number-item">
+                            <h3>100+</h3>
+                            <p>PROJETOS AUTORAIS</p>
+                        </div>
+                        <div class="number-item">
+                            <h3>200+</h3>
+                            <p>MARCAS ATENDIDAS</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- HISTÓRIA EM ATOS -->
+        <section class="section-padding acts">
+            <div class="container">
+                <div class="acts-header">
+                    <div class="acts-kicker">NOSSA TRAJETÓRIA</div>
+                    <h2 class="acts-title">Uma história contada em três atos.</h2>
+                    <p class="acts-text">
+                        A GSIM Brasil nasce da Sim! Filmes, produtora carioca que aprendeu a fazer muito com pouco, sempre
+                        colocando a câmera a serviço de pessoas de verdade. Crescemos atendendo empresas que queriam ir além
+                        do institucional de prateleira e, hoje, nos posicionamos como <span class="text-highlight">grupo de
+                        comunicação com visão de futuro</span>.
+                    </p>
+                </div>
+
+                <div class="acts-grid">
+                    <article class="act-card">
+                        <div class="act-tag">Ato 01</div>
+                        <h3 class="act-title">O nascimento da Sim! Filmes</h3>
+                        <p class="act-text">
+                            Tudo começa no Rio de Janeiro, com uma produtora apaixonada por cinema e histórias humanas.
+                            Rodamos sets, treinamentos, campanhas e projetos especiais sempre com um olhar: fazer com que
+                            cada cliente se reconheça na tela.
+                        </p>
+                    </article>
+
+                    <article class="act-card">
+                        <div class="act-tag">Ato 02</div>
+                        <h3 class="act-title">Da produtora ao grupo de comunicação</h3>
+                        <p class="act-text">
+                            A experiência com grandes empresas e projetos de impacto nos leva a ampliar nossa atuação.
+                            Surgem divisões dedicadas à comunicação corporativa, conteúdo autoral e estratégia digital,
+                            mantendo o <span class="text-highlight">DNA cinematográfico</span> em tudo o que fazemos.
+                        </p>
+                    </article>
+
+                    <article class="act-card">
+                        <div class="act-tag">Ato 03</div>
+                        <h3 class="act-title">GSIM Brasil: propósito em escala</h3>
+                        <p class="act-text">
+                            Consolidamos a GSIM como grupo, com base em São Paulo e Rio de Janeiro, focado em projetos que
+                            unem fé, cultura, negócios e impacto social. Olhamos para o futuro com a certeza de que
+                            <strong class="text-highlight">comunicação com propósito transforma</strong> – e é isso que
+                            queremos amplificar.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- JEITO GSIM DE TRABALHAR -->
+        <section class="section-padding">
+            <div class="container flow-grid">
+                <div>
+                    <p class="about-kicker">JEITO GSIM DE TRABALHAR</p>
+                    <h2 class="about-title">
+                        Cada projeto é único.<br>
+                        Nosso <span>processo</span> também.
+                    </h2>
+                    <p class="flow-side-text">
+                        Não acreditamos em fórmulas enlatadas. Em cada novo desafio, redesenhamos o caminho mais adequado
+                        para o cliente, combinando estratégia, estética e execução com rigor técnico. O ponto de partida é
+                        sempre o mesmo: <strong>escuta profunda</strong> e entendimento de contexto.
+                    </p>
+                </div>
+
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="flow-num">01</div>
+                        <div>
+                            <div class="flow-title">Imersão & propósito</div>
+                            <p class="flow-text">
+                                Entramos na realidade da marca, do público e do desafio. Identificamos o “porquê” do projeto
+                                e qual transformação buscamos gerar.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-num">02</div>
+                        <div>
+                            <div class="flow-title">Estratégia & narrativa</div>
+                            <p class="flow-text">
+                                Construímos o arco narrativo, o tom de voz e a estética. É aqui que definimos como o conteúdo
+                                vai tocar, informar e engajar.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-num">03</div>
+                        <div>
+                            <div class="flow-title">Execução cinematográfica</div>
+                            <p class="flow-text">
+                                Filmagem, direção, som, montagem e finalização com padrão de cinema, respeitando prazos e
+                                a realidade de cada cliente.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-num">04</div>
+                        <div>
+                            <div class="flow-title">Entrega & continuidade</div>
+                            <p class="flow-text">
+                                Pensamos em desdobramentos, versões e formatos para diferentes canais, garantindo que a
+                                história continue viva no tempo.
+                            </p>
+                        </div>
+                    </div>
+                    <p class="flow-note">
+                        Em todas as etapas, trabalhamos lado a lado com o cliente, como um <span class="text-highlight">parceiro
+                        estratégico</span> – e não apenas como fornecedor.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIENTES E SETORES -->
+        <section class="section-padding clients-section">
+            <div class="container">
+                <h2 class="section-title">Com quem já <span class="text-highlight">caminhamos</span>.</h2>
+                <p class="acts-text" style="max-width:640px; margin-bottom:26px;">
+                    Da indústria da beleza à educação, da saúde aos projetos sociais, nossa história se constrói com marcas
+                    e pessoas que acreditam que comunicação pode – e deve – ir além do óbvio.
+                </p>
+
+                <div class="clients-wrapper" aria-label="Marcas atendidas pela GSIM Brasil">
+                    <!-- Linha 1 -->
+                    <div class="clients-row">
+                        <div class="clients-track row-1">
+                            <div class="client-logo"><img src="carolina-herrera-logo_115_51.png" alt="Carolina Herrera"></div>
+                            <div class="client-logo"><img src="1200px-Puig_logo.svg_115_21.png" alt="Puig"></div>
+                            <div class="client-logo"><img src="mauricio-de-sousa-1.png" alt="Mauricio de Sousa Produções"></div>
+                            <div class="client-logo"><img src="combate.png" alt="Combate"></div>
+                            <div class="client-logo"><img src="niely-2.png" alt="Niely"></div>
+                            <div class="client-logo"><img src="scjohnson-2.png" alt="SC Johnson"></div>
+                            <div class="client-logo"><img src="johnson-e-johnson-2.png" alt="Johnson & Johnson"></div>
+                            <div class="client-logo"><img src="eau-themale-2.png" alt="Eau Thermale Avène"></div>
+                            <div class="client-logo"><img src="escola-americana-2.png" alt="Escola Americana do Rio de Janeiro"></div>
+                            <div class="client-logo"><img src="capital-rossi.png" alt="Capital Rossi"></div>
+
+                            <!-- duplicação para loop contínuo -->
+                            <div class="client-logo"><img src="carolina-herrera-logo_115_51.png" alt="Carolina Herrera"></div>
+                            <div class="client-logo"><img src="1200px-Puig_logo.svg_115_21.png" alt="Puig"></div>
+                            <div class="client-logo"><img src="mauricio-de-sousa-1.png" alt="Mauricio de Sousa Produções"></div>
+                            <div class="client-logo"><img src="combate.png" alt="Combate"></div>
+                            <div class="client-logo"><img src="niely-2.png" alt="Niely"></div>
+                            <div class="client-logo"><img src="scjohnson-2.png" alt="SC Johnson"></div>
+                            <div class="client-logo"><img src="johnson-e-johnson-2.png" alt="Johnson & Johnson"></div>
+                            <div class="client-logo"><img src="eau-themale-2.png" alt="Eau Thermale Avène"></div>
+                            <div class="client-logo"><img src="escola-americana-2.png" alt="Escola Americana do Rio de Janeiro"></div>
+                            <div class="client-logo"><img src="capital-rossi.png" alt="Capital Rossi"></div>
+                        </div>
+                    </div>
+
+                    <!-- Linha 2 -->
+                    <div class="clients-row">
+                        <div class="clients-track row-2">
+                            <div class="client-logo"><img src="alto-rio-preto.png" alt="Alto Rio Preto"></div>
+                            <div class="client-logo"><img src="scs.png" alt="SCS"></div>
+                            <div class="client-logo"><img src="kerastase-2.png" alt="Kérastase"></div>
+                            <div class="client-logo"><img src="redken-1.png" alt="Redken"></div>
+                            <div class="client-logo"><img src="skin-ceuticals.png" alt="SkinCeuticals"></div>
+                            <div class="client-logo"><img src="vichy.png" alt="Vichy"></div>
+                            <div class="client-logo"><img src="som-livre-2.png" alt="Som Livre"></div>
+                            <div class="client-logo"><img src="grendene.png" alt="Grendene"></div>
+                            <div class="client-logo"><img src="maybelline.png" alt="Maybelline"></div>
+                            <div class="client-logo"><img src="loreal.png" alt="L'Oréal"></div>
+                            <div class="client-logo"><img src="maracana.png" alt="Maracanã"></div>
+
+                            <!-- duplicação para loop contínuo -->
+                            <div class="client-logo"><img src="alto-rio-preto.png" alt="Alto Rio Preto"></div>
+                            <div class="client-logo"><img src="scs.png" alt="SCS"></div>
+                            <div class="client-logo"><img src="kerastase-2.png" alt="Kérastase"></div>
+                            <div class="client-logo"><img src="redken-1.png" alt="Redken"></div>
+                            <div class="client-logo"><img src="skin-ceuticals.png" alt="SkinCeuticals"></div>
+                            <div class="client-logo"><img src="vichy.png" alt="Vichy"></div>
+                            <div class="client-logo"><img src="som-livre-2.png" alt="Som Livre"></div>
+                            <div class="client-logo"><img src="grendene.png" alt="Grendene"></div>
+                            <div class="client-logo"><img src="maybelline.png" alt="Maybelline"></div>
+                            <div class="client-logo"><img src="loreal.png" alt="L'Oréal"></div>
+                            <div class="client-logo"><img src="maracana.png" alt="Maracanã"></div>
+                        </div>
+                    </div>
+
+                    <!-- Linha 3 -->
+                    <div class="clients-row">
+                        <div class="clients-track row-3">
+                            <div class="client-logo"><img src="odebrecht.png" alt="Odebrecht"></div>
+                            <div class="client-logo"><img src="lancome.png" alt="Lancôme"></div>
+                            <div class="client-logo"><img src="globo.png" alt="Globo"></div>
+                            <div class="client-logo"><img src="gillette.png" alt="Gillette"></div>
+                            <div class="client-logo"><img src="la-roche-posay.png" alt="La Roche-Posay"></div>
+                            <div class="client-logo"><img src="embratur-1.png" alt="Embratur"></div>
+                            <div class="client-logo"><img src="eletrobras.png" alt="Eletrobras"></div>
+                            <div class="client-logo"><img src="colorama.png" alt="Colorama"></div>
+                            <div class="client-logo"><img src="garnier.png" alt="Garnier"></div>
+                            <div class="client-logo"><img src="gallo.png" alt="Gallo"></div>
+                            <div class="client-logo"><img src="statoil.png" alt="Statoil"></div>
+
+                            <!-- duplicação para loop contínuo -->
+                            <div class="client-logo"><img src="odebrecht.png" alt="Odebrecht"></div>
+                            <div class="client-logo"><img src="lancome.png" alt="Lancôme"></div>
+                            <div class="client-logo"><img src="globo.png" alt="Globo"></div>
+                            <div class="client-logo"><img src="gillette.png" alt="Gillette"></div>
+                            <div class="client-logo"><img src="la-roche-posay.png" alt="La Roche-Posay"></div>
+                            <div class="client-logo"><img src="embratur-1.png" alt="Embratur"></div>
+                            <div class="client-logo"><img src="eletrobras.png" alt="Eletrobras"></div>
+                            <div class="client-logo"><img src="colorama.png" alt="Colorama"></div>
+                            <div class="client-logo"><img src="garnier.png" alt="Garnier"></div>
+                            <div class="client-logo"><img src="gallo.png" alt="Gallo"></div>
+                            <div class="client-logo"><img src="statoil.png" alt="Statoil"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="cta-bottom">
+            <div class="container">
+                <h2>Vamos criar algo <span>extraordinário</span> juntos?</h2>
+                <p>
+                    Se a sua marca também acredita em histórias que tocam, elevam e transformam, a GSIM está pronta para
+                    estar ao seu lado no próximo capítulo.
+                </p>
+                <a href="mailto:contato@simfilmes.com.br" class="btn-big-footer">Iniciar projeto</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SÃO PAULO</h4>
+                    <p>R. Simão Alvares 356<br>Pinheiros - 8º Andar</p>
+                </div>
+                <div class="footer-col">
+                    <h4>RIO DE JANEIRO</h4>
+                    <p>Praça do Flamengo 66<br>Flamengo</p>
+                </div>
+                <div class="footer-col">
+                    <h4>CONTATO</h4>
+                    <p>+55 21 98621-2411</p>
+                    <div style="margin-top:15px">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Vimeo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <span>© 2025 GSIM Brasil. Todos os direitos reservados.</span>
+                <span>Design: GSIM Studio</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

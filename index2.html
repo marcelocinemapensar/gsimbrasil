@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>GSIM Brasil | Comunicação com Propósito</title>
+    <meta name="description" content="Grupo de comunicação integrado. Sim! Publi+Corp e Sim! Content.">
+    
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+
+    <style>
+        /* --- 1. SYSTEM (DESKTOP BASE) --- */
+        :root {
+            --ebano: #050505;       
+            --canarinho: #FDC41F;   
+            --ceu-azul: #3793D1;    
+            --branco: #FFFFFF;
+            --border: rgba(255, 255, 255, 0.15);
+            --easing: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .key-highlight { color: var(--canarinho); }
+
+        .text-highlight { color: var(--canarinho); }
+
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
+        
+        html, body { 
+            width: 100%; overflow-x: hidden; 
+            background-color: var(--ebano); color: var(--branco);
+            font-family: 'Commissioner', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        /* Cursor Desktop */
+        @media (min-width: 1025px) {
+            body { cursor: none; }
+            .cursor-dot {
+                width: 8px; height: 8px; background: var(--canarinho);
+                border-radius: 50%; position: fixed; top: 0; left: 0; z-index: 10000;
+                pointer-events: none; transform: translate(-50%, -50%);
+            }
+            .cursor-glow {
+                width: 400px; height: 400px; 
+                background: radial-gradient(circle, rgba(253, 196, 31, 0.12), transparent 70%);
+                border-radius: 50%; position: fixed; top: 0; left: 0; z-index: 9999;
+                pointer-events: none; transform: translate(-50%, -50%); mix-blend-mode: screen;
+            }
+        }
+        @media (max-width: 1024px) { .cursor-dot, .cursor-glow { display: none !important; } }
+
+        /* --- 3. HEADER --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 20px 0;
+            z-index: 1000; background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+            transition: padding 0.3s ease;
+        }
+
+        header .container {
+            display: flex; justify-content: space-between; align-items: center;
+            width: 90%; max-width: 1400px; margin: 0 auto; padding: 0 20px;
+        }
+
+        .logo { z-index: 1002; position: relative; }
+        .logo img { height: 35px; width: auto; filter: brightness(0) invert(1); display: block; }
+
+        /* Menu Desktop */
+        .menu-desktop { display: flex; gap: 40px; align-items: center; margin-left: auto; }
+        .nav-link { 
+            color: white; text-decoration: none; font-size: 0.8rem; font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 1px; position: relative; opacity: 0.9;
+        }
+        .nav-link:hover { opacity: 1; color: var(--canarinho); }
+        .btn-header {
+            padding: 10px 25px; border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 50px; text-decoration: none; color: white;
+            font-weight: 700; text-transform: uppercase; font-size: 0.75rem;
+            letter-spacing: 1px; transition: 0.3s;
+        }
+        .btn-header:hover { background: white; color: var(--ebano); border-color: white; }
+
+        /* MENU MOBILE (OVERLAY) */
+        .mobile-toggle { display: none; font-size: 1.8rem; color: white; cursor: pointer; z-index: 1002; }
+        
+        .mobile-menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--ebano); /* Fundo sólido para leitura */
+            z-index: 1001;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 40px;
+            transform: translateY(-100%); /* Escondido pra cima */
+            transition: transform 0.5s var(--easing);
+        }
+        .mobile-menu-overlay.active { transform: translateY(0); }
+        
+        .mobile-link {
+            font-size: 2rem; font-weight: 800; text-transform: uppercase; color: white; 
+            text-decoration: none; letter-spacing: 1px;
+        }
+        .mobile-link:active { color: var(--canarinho); transform: scale(0.95); }
+
+        /* --- 4. HERO --- */
+        .hero { height: 100vh; width: 100%; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: grayscale(100%) contrast(1.1); z-index: 0; }
+        .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(5,5,5,0.2) 0%, rgba(5,5,5,1) 90%); z-index: 1; }
+        .hero-content { z-index: 2; text-align: center; position: relative; width: 100%; padding: 0 20px; }
+        
+        h1.hero-title {
+            font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 800; letter-spacing: -0.02em;
+            line-height: 1.1; margin-bottom: 30px; color: white; opacity: 0; animation: fadeInUp 1s ease 0.3s forwards;
+        }
+        .blink-tech {
+            background: linear-gradient(90deg, var(--canarinho), #FFFFFF, var(--ceu-azul), var(--canarinho));
+            background-size: 300%; -webkit-background-clip: text; background-clip: text; color: transparent;
+            animation: gradient-pulse 4s infinite;
+        }
+        @keyframes gradient-pulse { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+        .hero-desc { max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem; color: #e0e0e0; font-weight: 300; opacity: 0; animation: fadeInUp 1s ease 0.5s forwards; }
+
+        /* Botões */
+        .magnetic-wrap { display: inline-block; opacity: 0; animation: fadeInUp 1s ease 0.7s forwards; }
+        .btn-primary { display: inline-block; padding: 16px 45px; background: var(--canarinho); color: var(--ebano); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: 0.3s; }
+        
+        .btn-outline-white {
+            display: inline-block; padding: 15px 40px; background: transparent; 
+            color: var(--branco); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; 
+            text-decoration: none; border-radius: 2px; border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        /* --- 5. SECTIONS --- */
+        .marquee { background: var(--canarinho); padding: 15px 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 2; }
+        .marquee-content { display: inline-block; animation: scroll 25s linear infinite; }
+        .marquee span { font-size: 1rem; color: var(--ebano); font-weight: 800; text-transform: uppercase; margin: 0 40px; letter-spacing: 1px; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
+        .section-padding { padding: 120px 0; border-top: 1px solid var(--border); position: relative; z-index: 2; }
+
+        .manifesto-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
+        .manifesto h2 { font-size: 3rem; margin-bottom: 30px; line-height: 1; }
+        .manifesto p { font-size: 1.15rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; font-weight: 300; }
+        .media-wrapper { border-radius: 4px; overflow: hidden; aspect-ratio: 16/9; background: #111; }
+        .media-wrapper video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; filter: grayscale(100%); }
+        
+        .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 40px; }
+        .stat-item h4 { font-size: 3rem; color: var(--canarinho); font-weight: 800; margin-bottom: 5px; line-height: 1; }
+        .stat-item p { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
+
+        .services { background: #0a0a0a; }
+        .service-card { border-top: 1px solid var(--border); padding: 60px 0; display: grid; grid-template-columns: 0.5fr 2fr 2fr; align-items: center; gap: 20px; transition: background 0.3s; }
+        .srv-num { font-family: monospace; color: var(--canarinho); font-size: 1.2rem; }
+        .srv-title { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: white; }
+        .srv-desc { color: #aaa; font-size: 1rem; max-width: 400px; }
+
+        .portfolio { background: var(--ebano); }
+        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+        .case-item { display: block; text-decoration: none; margin-bottom: 40px; }
+        .case-img-wrap { width: 100%; aspect-ratio: 16/9; background: #1a1a1a; overflow: hidden; border-radius: 2px; margin-bottom: 20px; position: relative; }
+        .case-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; opacity: 0.9; }
+        .case-info { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        .case-title { font-size: 1.4rem; font-weight: 700; color: white; text-transform: uppercase; margin: 0; }
+        .case-cat { color: var(--canarinho); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        .special-projects { background: #080808; }
+        .special-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+        .special-card { background: rgba(255,255,255,0.03); padding: 40px 30px; border: 1px solid var(--border); transition: 0.3s; }
+        .sp-icon { font-size: 2.5rem; color: var(--canarinho); margin-bottom: 20px; }
+        .sp-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; }
+        .sp-desc { font-size: 0.9rem; color: #999; line-height: 1.5; }
+
+        .pillars { background: linear-gradient(to bottom, var(--ebano), #000); text-align: center; }
+        .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+        .pillar-card { padding: 40px; border: 1px solid var(--border); }
+        .pillar-icon { font-size: 2.5rem; color: var(--canarinho); margin-bottom: 20px; }
+
+        .crazy-icon {
+    width: 40px;
+    height: 6px;
+    background: linear-gradient(90deg, var(--canarinho), var(--ceu-azul), var(--branco));
+    background-size: 300%;
+    animation: crazyShift 3s infinite linear;
+    margin-bottom: 20px;
+}
+@keyframes crazyShift {
+    0% {background-position:0% 50%;}
+    100% {background-position:100% 50%;}
+}
+
+.extra-blink {
+            display: inline-block;
+            animation: extraGlow 1.8s ease-in-out infinite;
+        }
+
+        @keyframes extraGlow {
+            0% { opacity: 1; text-shadow: 0 0 0 rgba(253,196,31,0); }
+            40% { opacity: 1; text-shadow: 0 0 14px rgba(253,196,31,0.75); }
+            60% { opacity: 0.7; text-shadow: 0 0 6px rgba(253,196,31,0.4); }
+            100% { opacity: 1; text-shadow: 0 0 0 rgba(253,196,31,0); }
+        }
+
+        /* --- 7. FOOTER --- */
+        footer { background: var(--canarinho); color: var(--ebano); padding: 100px 0 40px; position: relative; overflow: hidden; }
+        .footer-top { text-align: center; margin-bottom: 80px; position: relative; z-index: 2; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 60px; }
+        
+        .footer-cta-title {
+            font-size: clamp(3rem, 10vw, 8rem); line-height: 0.85; font-weight: 900;
+            text-transform: uppercase; margin-bottom: 40px; color: var(--ebano);
+            letter-spacing: -0.04em; word-wrap: break-word; overflow-wrap: break-word;
+        }
+
+        .btn-big-footer {
+            display: inline-block; padding: 20px 60px; background: var(--ebano); color: var(--canarinho);
+            font-size: 1rem; font-weight: 800; text-transform: uppercase; text-decoration: none;
+            border-radius: 50px; transition: 0.3s; border: 2px solid var(--ebano);
+        }
+        .btn-big-footer:hover {
+            background: var(--canarinho);
+            color: var(--ebano);
+        }
+
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding-bottom: 40px; }
+        .footer-col h4 { font-size: 0.85rem; color: var(--ebano); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; opacity: 0.6; }
+        .footer-col p, .footer-col a { display: block; color: var(--ebano); text-decoration: none; font-size: 1.1rem; margin-bottom: 10px; font-weight: 600; transition: opacity 0.3s; }
+        .footer-copyright { border-top: 1px solid rgba(0,0,0,0.1); padding-top: 30px; margin-top: 60px; display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(0,0,0,0.6); }
+
+        .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background-color: #25D366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; text-decoration: none; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+        #preloader { position: fixed; inset: 0; background: var(--ebano); z-index: 99999; display: flex; justify-content: center; align-items: center; animation: fadeOut 0.5s ease 1.5s forwards; pointer-events: none; }
+        .loader-logo { font-size: 3rem; font-weight: 900; letter-spacing: -2px; color: var(--canarinho); animation: pulse 1s infinite; }
+        @keyframes pulse { 50% { opacity: 0.5; } }
+        @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- 8. MOBILE OPTIMIZATION (IOS PERFECT) --- */
+        @media (max-width: 900px) {
+            /* 1. Margens Seguras (iPhone Notch/Edges) */
+            .container { 
+                width: 100%; 
+                padding-left: max(24px, env(safe-area-inset-left)); 
+                padding-right: max(24px, env(safe-area-inset-right)); 
+                box-sizing: border-box;
+            }
+            .section-padding { padding: 70px 0; }
+            
+            /* 2. Header Mobile */
+            header { padding: 20px 0; }
+            .menu-desktop { display: none; } /* Esconde menu desk */
+            .mobile-toggle { display: block; } /* Mostra hambúrguer */
+            
+            /* 3. Layout Stack (1 Coluna) */
+            .manifesto-grid, .portfolio-grid, .footer-info-grid, .special-grid, .pillars-grid, .stats, .footer-grid { 
+                grid-template-columns: 1fr !important; gap: 40px; 
+            }
+            
+            /* 4. Correção de Texto "Estourado" */
+            /* Usa VW (Viewport Width) para escalar o texto com a largura da tela */
+            h1.hero-title { 
+                font-size: 11vw; /* Escala fluida */
+                line-height: 1.1; 
+                word-break: break-word;
+            }
+            .hero-desc { font-size: 1rem; padding: 0 10px; }
+
+            .manifesto h2 { font-size: 2rem; line-height: 1.1; }
+            
+            /* 5. Footer Extraordinário Fix */
+            .footer-cta-title { 
+                font-size: 9vw; /* Ajuste milimétrico para caber na tela vertical */
+                line-height: 0.9; 
+                word-break: normal; 
+                hyphens: none;
+                overflow-wrap: anywhere;
+            }
+            .btn-big-footer { width: 100%; text-align: center; }
+            .footer-grid { gap: 40px; text-align: left; }
+            .footer-copyright { flex-direction: column; gap: 15px; text-align: center; }
+
+            /* 6. Serviços */
+            .service-card { grid-template-columns: 1fr; text-align: left; gap: 15px; padding: 40px 0; }
+            .srv-title { font-size: 1.8rem; }
+            
+            /* 7. Performance */
+            .cursor-dot, .cursor-glow, #canvas-container { display: none !important; }
+            * { cursor: auto !important; }
+        }
+    
+.blink-tech-footer {
+    background: linear-gradient(
+        90deg,
+        #000000,
+        #3a2a00,
+        #FDC41F,
+        #3a2a00,
+        #000000
+    );
+    background-size: 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: footerPulse 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(253,196,31,0.35));
+}
+
+@keyframes footerPulse {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+.service-card:hover .srv-desc {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.srv-desc {
+    display:inline-block;
+    transition: transform 0.3s ease;
+}
+
+
+        .pillars h2 {
+            display: inline-block;
+            transition: transform 0.35s var(--easing);
+        }
+        .pillars h2:hover {
+            transform: scale(1.12);
+        }
+
+    
+        /* Scroll arrow between hero and marquee (mobile-focused) */
+        .scroll-arrow {
+            width: 28px;
+            height: 28px;
+            border-left: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(135deg, #FEE08A, #FDC41F, #D49A10) 1;
+            transform: rotate(-45deg);
+            margin: 28px auto 0;
+            animation: arrowFloat 1.8s ease-in-out infinite;
+        }
+
+        @keyframes arrowFloat {
+            0%   { transform: rotate(-45deg) translateY(0); opacity: 0.0; }
+            20%  { opacity: 1; }
+            50%  { transform: rotate(-45deg) translateY(8px); opacity: 1; }
+            100% { transform: rotate(-45deg) translateY(0); opacity: 0.3; }
+        }
+
+        @media (min-width: 901px) {
+            .scroll-arrow {
+                margin-top: 40px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="preloader"><div class="loader-logo">GSIM</div></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-glow"></div>
+    <div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></div>
+    <a href="https://wa.me/5521986212411" class="whatsapp-btn" target="_blank"><i class="lni lni-whatsapp"></i></a>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <a href="#sobre" class="mobile-link" onclick="toggleMenu()">A GSIM</a>
+        <a href="#servicos" class="mobile-link" onclick="toggleMenu()">O Que Fazemos</a>
+        <a href="#cases" class="mobile-link" onclick="toggleMenu()">Cases</a>
+        <a href="#contato" class="mobile-link text-highlight" onclick="toggleMenu()" style="color:var(--canarinho)">Contato</a>
+        <div onclick="toggleMenu()" style="position:absolute; top:30px; right:30px; color:white; font-size:2rem; cursor:pointer;">&times;</div>
+    </div>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo"><img src="logo-white.png" alt="GSIM"></a>
+            
+            <nav class="menu-desktop">
+                <a href="#sobre" class="nav-link">A GSIM</a>
+                <a href="#servicos" class="nav-link">O Que Fazemos</a>
+                <a href="#cases" class="nav-link">Cases</a>
+                <div class="magnetic-wrap">
+                    <a href="#contato" class="btn-header">Contato</a>
+                </div>
+            </nav>
+
+            <div class="mobile-toggle" onclick="toggleMenu()"><i class="lni lni-menu"></i></div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="video-bg-container" style="position:absolute; inset:0; z-index:0;">
+            <video autoplay muted loop playsinline class="video-bg" style="width:100%; height:100%; object-fit:cover; opacity:0.35; filter:grayscale(100%) contrast(1.2);">
+                <source src="hero-loop.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-content container">
+            <span class="hero-tag">GRUPO SIM BRASIL</span>
+            <h1 class="hero-title">COMUNICAÇÃO<br><span class="blink-tech">QUE TRANSFORMA</span>.</h1>
+            <p class="hero-desc">Unimos tradição e inovação para criar experiências que conectam corações. 16 anos de legado no audiovisual.</p>
+            <div class="magnetic-wrap"><a href="#cases" class="btn-primary">CONHEÇA NOSSAS OBRAS</a></div>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <div class="marquee"><div class="marquee-content">
+                <span>• ESTRATÉGIA • CINEMA • PUBLICIDADE • STORYTELLING • TECNOLOGIA • </span>
+                <span>• ESTRATÉGIA • CINEMA • PUBLICIDADE • STORYTELLING • TECNOLOGIA • </span>
+            </div></div>
+
+    <section id="sobre" class="section-padding manifesto">
+        <div class="container manifesto-grid">
+            <div class="manifesto-text reveal">
+                <h2 class="text-highlight">DNA CINEMATOGRÁFICO</h2>
+                <h1>NÃO É SÓ SOBRE VÍDEO.<br><span class="key-highlight">É SOBRE IMPACTO.</span></h1>
+                <p>Nascemos do audiovisual e fomos moldados pelo tempo. Produzimos mais do que conteúdo: criamos experiências que despertam virtudes e constroem marcas sólidas.</p>
+                <div class="stats">
+                    <div><h4 class="text-highlight key-highlight">16</h4><p>ANOS DE EXPERIÊNCIA</p></div>
+                    <div><h4 class="text-highlight key-highlight">SP/RJ</h4><p>ATUAÇÃO NACIONAL</p></div>
+                </div>
+            </div>
+            <div class="media-wrapper reveal">
+                <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover; opacity:0.8; filter:grayscale(100%);">
+                    <source src="dna.mp4" type="video/mp4">
+                    <source src="hero-loop.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="services section-padding">
+        <div class="container">
+            <h2 style="font-size:2.5rem; margin-bottom:50px; letter-spacing:1px; font-weight:700">NOSSAS <span class="text-highlight"><span class="text-highlight">DIVISÕES</span></span></h2>
+            <div class="service-card reveal"><span class="srv-num">01</span><span class="srv-title">Sim! Publi<span class="text-highlight">+Corp</span></span><span class="srv-desc">Comunicação corporativa, treinamentos e campanhas.</span></div>
+            <div class="service-card reveal"><span class="srv-num">02</span><span class="srv-title">Sim! <span class="text-highlight">Content</span></span><span class="srv-desc">Incubadora de propriedade intelectual e cinema.</span></div>
+            <div class="service-card reveal"><span class="srv-num">03</span><span class="srv-title">Estratégia <span class="text-highlight">Digital</span></span><span class="srv-desc">Inteligência de Crescimento & Performance.</span></div>
+        </div>
+    </section>
+
+    <section id="cases" class="portfolio section-padding">
+        <div class="container">
+            <h2 style="font-size:2.5rem; margin-bottom:50px">TRABALHOS <span class="key-highlight">SELECIONADOS</span></h2>
+            <div class="portfolio-grid">
+                <a href="#" class="case-item reveal"><div class="case-img-wrap"><img src="case1.jpg" alt="Yamaha"></div><div class="case-info"><h3 class="case-title">VIOLÃO E BADEN POWELL: YAMAHA</h3><span class="case-cat">BRANDED CONTENT</span></div></a>
+                <a href="#" class="case-item reveal"><div class="case-img-wrap"><img src="case2.jpg" alt="Gallo"></div><div class="case-info"><h3 class="case-title">Gallo Portugal</h3><span class="case-cat">Sim! Publi • 3D Product</span></div></a>
+                <a href="#" class="case-item reveal"><div class="case-img-wrap"><img src="case3.jpg" alt="UFC"></div><div class="case-info"><h3 class="case-title">NARRATIVAS QUE CONECTAM</h3><span class="case-cat">Sim! Content • Série</span></div></a>
+                <a href="#" class="case-item reveal"><div class="case-img-wrap"><img src="case4.jpg" alt="Cientista"></div><div class="case-info"><h3 class="case-title">PUBLICIDADE</h3><span class="case-cat">Institucional</span></div></a>
+            </div>
+            <div style="text-align:center; margin-top:60px"><a href="#" class="btn-outline-white">Ver <span class="key-highlight">Portfólio</span> Completo</a></div>
+        </div>
+    </section>
+
+    <section id="especiais" class="special-projects section-padding" style="background:#080808">
+        <div class="container">
+            <h2 style="margin-bottom:50px">PROJETOS <span class="key-highlight">ESPECIAIS</span></h2>
+            <div class="special-grid">
+                <div class="special-card reveal"><div class="crazy-icon"></div><h3 class="sp-title">Educação & E-Learning</h3><p class="sp-desc">Produção de videoaulas de alta performance.</p></div>
+                <div class="special-card reveal"><div class="crazy-icon"></div><h3 class="sp-title">Podcasts & Vodcasts</h3><p class="sp-desc">Estúdios equipados para produção.</p></div>
+                <div class="special-card reveal"><div class="crazy-icon"></div><h3 class="sp-title">Live Streaming</h3><p class="sp-desc">Transmissões profissionais para eventos.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pillars section-padding" style="background:linear-gradient(to bottom, var(--ebano), #000); text-align:center">
+        <div class="container">
+            <h2 style="font-size:2.5rem; margin-bottom:50px">Por que a GSIM?</h2>
+            <div class="pillars-grid">
+                <div class="pillar-card reveal"><div class="crazy-icon"></div><h3>Excelência</h3><p style="color:#999">Equipamentos de ponta.</p></div>
+                <div class="pillar-card reveal"><div class="crazy-icon"></div><h3>Criatividade</h3><p style="color:#999">Soluções fora da caixa.</p></div>
+                <div class="pillar-card reveal"><div class="crazy-icon"></div><h3>Propósito</h3><p style="color:#999">Impacto social real.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-top">
+                <h2 class="footer-cta-title">VAMOS CRIAR<br><span class="blink-tech-footer">O EXTRAORDINÁRIO?</span></h2>
+                <a href="mailto:contato@simfilmes.com.br" class="btn-big-footer">INICIAR PROJETO</a>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SÃO PAULO</h4>
+                    <p>R. Simão Alvares 356<br>Pinheiros - 8º Andar</p>
+                </div>
+                <div class="footer-col">
+                    <h4>RIO DE JANEIRO</h4>
+                    <p>Praça do Flamengo 66<br>Flamengo</p>
+                </div>
+                <div class="footer-col">
+                    <h4>CONTATO</h4>
+                    <p>+55 21 98621-2411</p>
+                    <div style="margin-top:15px">
+                        <a href="#">LINKEDIN</a>
+                        <a href="#">INSTAGRAM</a>
+                        <a href="#">VIMEO</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <span>© 2025 GSIM Brasil. Todos os direitos reservados.</span>
+                <span>Design: GSIM Studio</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+        // Parallax sutil nas imagens do portfólio
+        document.querySelectorAll('.case-img-wrap').forEach(container => {
+            const img = container.querySelector('img');
+            if (!img) return;
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+                const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+                img.style.transform = `scale(1.05) translate(${x * 10}px, ${y * 10}px)`;
+            });
+            container.addEventListener('mouseleave', () => {
+                img.style.transform = 'scale(1) translate(0, 0)';
+            });
+        });
+
+    </script>
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(() => { document.getElementById('preloader').style.opacity = '0'; }, 500);
+            setTimeout(() => { document.getElementById('preloader').style.display = 'none'; }, 1000);
+        });
+
+        // 3D + Cursor (Desktop Only)
+        if (window.innerWidth > 1024) {
+            const dot = document.querySelector('.cursor-dot');
+            const glow = document.querySelector('.cursor-glow');
+            document.addEventListener('mousemove', (e) => {
+                dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+                glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px';
+            });
+            document.querySelectorAll('a, button, .hover-trigger').forEach(el => {
+                el.addEventListener('mouseenter', () => dot.style.transform = 'translate(-50%, -50%) scale(2)');
+                el.addEventListener('mouseleave', () => dot.style.transform = 'translate(-50%, -50%) scale(1)');
+            });
+            
+            document.querySelectorAll('.magnetic-wrap').forEach(wrap => {
+                wrap.addEventListener('mousemove', (e) => {
+                    const pos = wrap.getBoundingClientRect();
+                    const x = e.clientX - pos.left - pos.width / 2;
+                    const y = e.clientY - pos.top - pos.height / 2;
+                    wrap.children[0].style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+                });
+                wrap.addEventListener('mouseleave', () => { wrap.children[0].style.transform = 'translate(0,0)'; });
+            });
+
+            // Three.js
+            const canvasContainer = document.getElementById('canvas-container');
+            if(canvasContainer) {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                canvasContainer.appendChild(renderer.domElement);
+                
+                const particlesGeo = new THREE.BufferGeometry();
+                const particlesCount = 400;
+                const posArray = new Float32Array(particlesCount * 3);
+                for(let i = 0; i < particlesCount * 3; i++) posArray[i] = (Math.random() - 0.5) * 15;
+                particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                const particlesMat = new THREE.PointsMaterial({ size: 0.03, color: 0xFDC41F, transparent: true, opacity: 0.8 });
+                const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
+                scene.add(particlesMesh);
+                camera.position.z = 3;
+                
+                let mouseX = 0, mouseY = 0;
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX / window.innerWidth - 0.5;
+                    mouseY = e.clientY / window.innerHeight - 0.5;
+                });
+                
+                function animate() {
+                    requestAnimationFrame(animate);
+                    particlesMesh.rotation.y += 0.0005;
+                    particlesMesh.rotation.x += mouseY * 0.01;
+                    particlesMesh.rotation.y += mouseX * 0.01;
+                    renderer.render(scene, camera);
+                }
+                animate();
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+<script>
+// Parallax sutil nas imagens do portfólio — versão fixa
+document.querySelectorAll('.case-img-wrap').forEach(container => {
+    const img = container.querySelector('img');
+    if (!img) return;
+
+    container.addEventListener('mousemove', e => {
+        const rect = container.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width/2) / rect.width;
+        const y = (e.clientY - rect.top - rect.height/2) / rect.height;
+        img.style.transform = `scale(1.08) translate(${x * 12}px, ${y * 12}px)`;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        img.style.transform = 'scale(1) translate(0, 0)';
+    });
+});
+</script>
+
+</body>
+</html>

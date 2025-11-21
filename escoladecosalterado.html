@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Escola de Cós + GSIM BRASIL | Projeto Especial</title>
+    <meta name="description" content="A união entre Medicina e Cinema. Aguarde 2026.">
+    <meta name="theme-color" content="#00a27a">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+
+    <style>
+        /* --- DESIGN SYSTEM --- */
+        :root {
+            --verde-cos: #00a27a;
+            --verde-escuro: #00624f;
+            --texto-escuro: #0b1b1c;
+            --bg-claro: #f3fbf8;
+            --branco: #FFFFFF;
+            --ebano: #050505;
+            --canarinho: #FDC41F;
+            --border: rgba(0, 162, 122, 0.2);
+            --easing: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        html, body { 
+            width: 100%; overflow-x: hidden; 
+            background-color: var(--branco); color: var(--texto-escuro);
+            font-family: 'Commissioner', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER (AJUSTADO) --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%;
+            z-index: 1000; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        
+        .back-link { 
+            color: white; text-decoration: none; font-weight: 700; font-size: 0.9rem; 
+            display: flex; align-items: center; gap: 10px; text-transform: uppercase; 
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+        }
+        .back-link i { font-size: 1.2rem; }
+        
+        /* LOGO DESCIDA SUTILMENTE */
+        .logo-gsim-header { 
+            height: 30px; 
+            filter: brightness(0) invert(1); 
+            drop-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+            margin-top: 8px; /* Ajuste para descer um pouco */
+        }
+
+        /* --- HERO --- */
+        .hero {
+            position: relative; min-height: 100vh; display: flex; align-items: center;
+            background: url('DEGRADE.png') no-repeat center center/cover;
+            color: white; padding-top: 80px;
+        }
+        .hero::before { content:''; position:absolute; inset:0; background: rgba(0,0,0,0.6); z-index: 1; } 
+        
+        .hero-container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+        
+        .hero-logo { max-width: 280px; margin-bottom: 40px; filter: brightness(0) invert(1); }
+        
+        .eyebrow { 
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; 
+            margin-bottom: 20px; opacity: 1; font-weight: 700; display: block;
+            color: var(--canarinho); text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+        
+        h1 { 
+            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; 
+            margin-bottom: 25px; max-width: 900px; color: #FFF;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.4rem); 
+            font-weight: 500; line-height: 1.6; 
+            margin-bottom: 40px; max-width: 800px; 
+            color: #FFFFFF !important; text-shadow: 0 2px 15px rgba(0,0,0,0.9);
+            opacity: 1;
+        }
+
+        .hero-actions { display: flex; gap: 20px; flex-wrap: wrap; }
+
+        /* Botões */
+        .btn-verde {
+            display: inline-block; padding: 18px 45px;
+            background-color: var(--verde-cos); color: var(--branco);
+            font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
+            text-decoration: none; border-radius: 50px; transition: 0.3s; border: 2px solid var(--verde-cos);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .btn-verde:hover { background-color: var(--verde-escuro); border-color: var(--verde-escuro); transform: translateY(-3px); }
+
+        .btn-outline {
+            display: inline-block; padding: 18px 40px; 
+            background-color: rgba(255,255,255,0.1); 
+            color: var(--branco); font-weight: 700; font-size: 1rem; 
+            text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; 
+            border-radius: 50px; transition: 0.3s; border: 2px solid var(--branco);
+            backdrop-filter: blur(5px); text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        .btn-outline:hover { background-color: var(--white); color: var(--verde-cos); text-shadow: none; }
+
+        /* --- SECTIONS --- */
+        .section-padding { padding: 100px 0; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        .grid-2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: start; }
+
+        /* About */
+        .about-text h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--texto-escuro); margin-bottom: 30px; line-height: 1.2; font-weight: 800; }
+        .about-text p { margin-bottom: 20px; font-size: 1.1rem; color: #444; }
+        .card-box { background: var(--bg-claro); padding: 40px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0, 162, 122, 0.05); }
+        .card-box h3 { color: var(--verde-cos); font-size: 1.4rem; margin-bottom: 20px; font-weight: 700; }
+        .card-box li { list-style: none; margin-bottom: 15px; display: flex; gap: 12px; color: var(--verde-escuro); font-weight: 500; }
+        .card-box i { color: var(--verde-cos); font-weight: 900; margin-top: 4px; }
+
+        /* Parceria */
+        .bg-light { background-color: var(--bg-claro); }
+        .grid-partner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .partner-title { font-size: 1rem; letter-spacing: 2px; color: var(--verde-cos); text-transform: uppercase; font-weight: 700; margin-bottom: 10px; display: block; }
+        .partner-headline { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 800; margin-bottom: 30px; color: var(--texto-escuro); line-height: 1.2; }
+
+        /* Mentores */
+        .grid-mentors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 60px; }
+        .mentor-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.05); transition: transform 0.3s ease; border: 1px solid #eee; }
+        .mentor-card:hover { transform: translateY(-10px); }
+        .mentor-img { width: 100%; height: 400px; object-fit: cover; object-position: top; }
+        .mentor-info { padding: 35px; }
+        .mentor-name { font-size: 1.8rem; font-weight: 800; color: var(--verde-escuro); margin-bottom: 5px; }
+        .mentor-role { font-size: 0.9rem; font-weight: 700; color: var(--verde-cos); text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .mentor-desc p { font-size: 1rem; color: #555; margin-bottom: 15px; }
+
+        /* Futuro */
+        .futuro-box { text-align: center; max-width: 900px; margin: 0 auto; }
+        
+        /* CTA Final */
+        .cta-final { position: relative; background: url('DEGRADE.png') no-repeat center center/cover; padding: 120px 0; color: white; text-align: center; }
+        .cta-final::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); }
+        .cta-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .cta-final h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; color: var(--canarinho); }
+        .cta-final p { font-size: 1.3rem; margin-bottom: 40px; color: white; }
+        .cta-bullets { text-align: left; max-width: 650px; margin: 0 auto 40px; }
+        .cta-bullets li { margin-bottom: 15px; display: flex; gap: 15px; align-items: flex-start; font-size: 1.1rem; }
+        .cta-bullets i { color: var(--canarinho); font-size: 1.3rem; margin-top: 2px; }
+
+        /* Footer */
+        footer { background: var(--ebano); color: white; padding: 60px 0 30px; border-top: 1px solid #222; text-align: center; }
+        .footer-copy { font-size: 0.8rem; opacity: 0.6; margin-top: 20px; display: block; }
+
+        /* Reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s var(--easing); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            .grid-2, .grid-partner, .grid-mentors { grid-template-columns: 1fr; gap: 40px; }
+            .hero-title { font-size: 2.5rem; }
+            .mentor-img { height: 350px; }
+            .section-padding { padding: 60px 0; }
+            .hero { padding-top: 100px; align-items: center; text-align: center; }
+            .hero-actions { justify-content: center; }
+            .btn-verde, .btn-outline { width: 100%; text-align: center; margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <i class="lni lni-arrow-left"></i> VOLTAR PARA HOME
+            </a>
+            <a href="#" class="logo-gsim">
+                <img src="logo-white.png" alt="GSIM Brasil" class="logo-gsim-header">
+            </a>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-container">
+            <span class="eyebrow reveal">Uma nova era para a Medicina no Brasil</span>
+            
+            <img src="LOGO VERDE HORIZONTAL.png" alt="Escola de Cós" class="hero-logo reveal" style="max-width: 280px; margin-bottom: 30px;">
+            
+            <h1 class="reveal">A Escola de Cós e a GSIM BRASIL estão reacendendo o propósito da Medicina.</h1>
+            
+            <p class="hero-subtitle reveal">
+                Mais do que uma escola, um movimento que reconecta médicos e estudantes com o motivo que os trouxe até aqui. Com a força cinematográfica da GSIM para transformar essa jornada.
+            </p>
+            
+            <div class="hero-actions reveal">
+                <a href="#cta-escoladecos" class="btn-verde">Conheça a Escola de Cós</a>
+                <a href="#parceria" class="btn-outline">Entenda a parceria</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-escola" class="section-padding">
+        <div class="container grid-about grid-2">
+            <div class="about-text reveal">
+                <h2>O que é a Escola de Cós?</h2>
+                <p>A Escola de Cós nasce como um movimento de resgate do propósito médico.</p>
+                <p>Em um cenário em que a rotina pesada, a pressão e o cansaço emocional muitas vezes afastam médicos e estudantes do sentido original da sua escolha, a Escola de Cós surge para reacender o brilho nos olhos.</p>
+                <p>É um espaço de formação, reflexão e crescimento que combina ciência, filosofia, prática clínica e humanidade.</p>
+            </div>
+            <div class="card-box reveal">
+                <h3>A Medicina volta a fazer sentido.</h3>
+                <ul>
+                    <li><i class="lni lni-checkmark-circle"></i> Formação profunda com base em experiência real.</li>
+                    <li><i class="lni lni-checkmark-circle"></i> Conteúdos que unem técnica, reflexão e propósito.</li>
+                    <li><i class="lni lni-checkmark-circle"></i> Uma comunidade que vive a Medicina como vocação.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="parceria" class="section-padding bg-light">
+        <div class="container grid-partner">
+            <div class="reveal">
+                <span class="partner-title">GSIM BRASIL × ESCOLA DE CÓS</span>
+                <h2 class="partner-headline">Quando propósito encontra narrativa, a Medicina ganha uma nova voz.</h2>
+                <p>A GSIM BRASIL é um grupo de comunicação com DNA audiovisual, mais de 16 anos de trajetória e uma história marcada por projetos que transformam realidades.</p>
+                <p>Ao se unir à Escola de Cós, a GSIM BRASIL assume um compromisso claro: entregar um conteúdo único, com padrão estético elevado, capaz de marcar época na formação médica.</p>
+            </div>
+            <div class="card-box reveal" style="background: white; border-color: var(--verde-cos);">
+                <h3>O que essa parceria entrega?</h3>
+                <ul>
+                    <li><i class="lni lni-video"></i> Conteúdos com qualidade cinematográfica.</li>
+                    <li><i class="lni lni-heart-monitor"></i> Narrativas reais da Medicina por dentro.</li>
+                    <li><i class="lni lni-infinite"></i> Uma jornada visual em constante evolução.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="mentores" class="section-padding">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 50px;" class="reveal">
+                <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 15px; color: var(--texto-escuro);">Os mentores dessa jornada</h2>
+                <p style="color:#666;">Dois médicos que vivem a Medicina em alto nível.</p>
+            </div>
+
+            <div class="grid-mentors">
+                <div class="mentor-card reveal">
+                    <img src="personaltrainer2-pic6-copiar-luiz-min.webp" class="mentor-img" alt="Dr. Luiz de Angeli">
+                    <div class="mentor-info">
+                        <h3 class="mentor-name">Dr. Luiz de Angeli</h3>
+                        <span class="mentor-role">Ortopedia Pediátrica e Formação Humanizada</span>
+                        <div class="mentor-desc">
+                            <p>Médico especializado em Ortopedia Pediátrica pela USP, com Fellowship nos EUA (Chicago). Traz a visão de quem busca aprofundamento técnico sem perder a sensibilidade humana.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mentor-card reveal">
+                    <img src="drrodrigo-03-min-min.webp" class="mentor-img" alt="Dr. Rodrigo Macedo">
+                    <div class="mentor-info">
+                        <h3 class="mentor-name">Dr. Rodrigo Macedo</h3>
+                        <span class="mentor-role">Cirurgia e Prática Hospitalar</span>
+                        <div class="mentor-desc">
+                            <p>Corpo clínico do Sírio-Libanês e Einstein. Compartilha a vivência real do bastidor da alta complexidade e as decisões difíceis da profissão com franqueza.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="futuro" class="section-padding bg-light">
+        <div class="container futuro-box reveal">
+            <img src="SIMBOLO VERDE - MODELO 02.png" alt="Símbolo" style="height: 60px; margin-bottom: 20px; opacity: 0.8;">
+            <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px; color: var(--texto-escuro);">Estamos só no começo.</h2>
+            <p style="font-size: 1.1rem; color: #555; margin-bottom: 20px;">Novas trilhas de conteúdos, experiências imersivas, formações exclusivas e projetos especiais já estão sendo desenhados.</p>
+            <p style="font-size: 1.1rem; color: #555; font-weight: 600;">O objetivo é claro: criar uma referência em formação médica que una excelência técnica, profundidade humana e uma narrativa inspiradora.</p>
+        </div>
+    </section>
+
+    <section id="cta-escoladecos" class="cta-final">
+        <div class="cta-content reveal">
+            <img src="SIMBOLO VERDE - MODELO 02.png" style="height:80px; margin-bottom:30px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));">
+            <h2>2026: O QUE VEM POR AÍ?</h2>
+            <p style="font-size: 1.4rem;">Não podemos revelar tudo agora. Mas estamos produzindo algo que vai redefinir a formação médica no Brasil.</p>
+            
+            <ul class="bullets-list">
+                <li><i class="lni lni-lock"></i> Trilhas de conteúdo inéditas em fase de produção sigilosa.</li>
+                <li><i class="lni lni-rocket"></i> Uma plataforma que une educação, cinema e comunidade.</li>
+                <li><i class="lni lni-timer"></i> Cadastre-se para receber acesso antecipado aos bastidores.</li>
+            </ul>
+            
+            <div style="margin-top: 40px;">
+                <a href="https://www.escoladecos.com" target="_blank" class="btn-verde" style="background:var(--canarinho); color:black; border-color:var(--canarinho)">ENTRAR NA LISTA DE ESPERA (2026)</a>
+                <p style="margin-top: 20px; font-size:0.9rem; opacity:0.7;">Seja o primeiro a saber.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="logo-white.png" class="footer-logo" alt="GSIM">
+        <p class="footer-copy">© 2025 GSIM Brasil. Projeto Especial: Escola de Cós.</p>
+    </footer>
+
+    <script>
+        // Reveal Animation Simples
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.style.cssText = "opacity: 1; transform: translateY(0);";
+            });
+        });
+        document.querySelectorAll('.reveal').forEach(el => {
+            el.style.cssText = "opacity: 0; transform: translateY(40px); transition: all 1s ease;";
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
