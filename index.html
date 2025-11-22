@@ -16,7 +16,6 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
 
     <style>
-        /* --- 1. SYSTEM (DESKTOP BASE) --- */
         :root {
             --ebano: #050505;       
             --canarinho: #FDC41F;   
@@ -25,11 +24,8 @@
             --border: rgba(255, 255, 255, 0.15);
             --easing: cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .key-highlight { color: var(--canarinho); }
-
         .text-highlight { color: var(--canarinho); }
-
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
         
@@ -59,22 +55,19 @@
         }
         @media (max-width: 1024px) { .cursor-dot, .cursor-glow { display: none !important; } }
 
-        /* --- 3. HEADER --- */
+        /* HEADER */
         header {
             position: fixed; top: 0; left: 0; width: 100%; padding: 20px 0;
             z-index: 1000; background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
             transition: padding 0.3s ease;
         }
-
         header .container {
             display: flex; justify-content: space-between; align-items: center;
             width: 90%; max-width: 1400px; margin: 0 auto; padding: 0 20px;
         }
-
         .logo { z-index: 1002; position: relative; }
         .logo img { height: 35px; width: auto; filter: brightness(0) invert(1); display: block; }
 
-        /* Menu Desktop */
         .menu-desktop { display: flex; gap: 40px; align-items: center; margin-left: auto; }
         .nav-link { 
             color: white; text-decoration: none; font-size: 0.8rem; font-weight: 700; 
@@ -89,15 +82,14 @@
         }
         .btn-header:hover { background: white; color: var(--ebano); border-color: white; }
 
-        /* MENU MOBILE (OVERLAY) */
         .mobile-toggle { display: none; font-size: 1.8rem; color: white; cursor: pointer; z-index: 1002; }
         
         .mobile-menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background-color: var(--ebano); /* Fundo sólido para leitura */
+            background-color: var(--ebano);
             z-index: 1001;
             display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 40px;
-            transform: translateY(-100%); /* Escondido pra cima */
+            transform: translateY(-100%);
             transition: transform 0.5s var(--easing);
         }
         .mobile-menu-overlay.active { transform: translateY(0); }
@@ -108,7 +100,7 @@
         }
         .mobile-link:active { color: var(--canarinho); transform: scale(0.95); }
 
-        /* --- 4. HERO --- */
+        /* HERO */
         .hero { height: 100vh; width: 100%; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: grayscale(100%) contrast(1.1); z-index: 0; }
         .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(5,5,5,0.2) 0%, rgba(5,5,5,1) 90%); z-index: 1; }
@@ -118,15 +110,10 @@
             font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 800; letter-spacing: -0.02em;
             line-height: 1.1; margin-bottom: 30px; color: white; opacity: 0; animation: fadeInUp 1s ease 0.3s forwards;
         }
-        .blink-tech {
-            background: linear-gradient(90deg, var(--canarinho), #FFFFFF, var(--ceu-azul), var(--canarinho));
-            background-size: 300%; -webkit-background-clip: text; background-clip: text; color: transparent;
-            animation: gradient-pulse 4s infinite;
-        }
+        .blink-tech { background: linear-gradient(90deg, var(--canarinho), #FFFFFF, var(--ceu-azul), var(--canarinho)); background-size: 300%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient-pulse 4s infinite; }
         @keyframes gradient-pulse { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
         .hero-desc { max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem; color: #e0e0e0; font-weight: 300; opacity: 0; animation: fadeInUp 1s ease 0.5s forwards; }
 
-        /* Botões */
         .magnetic-wrap { display: inline-block; opacity: 0; animation: fadeInUp 1s ease 0.7s forwards; }
         .btn-primary { display: inline-block; padding: 16px 45px; background: var(--canarinho); color: var(--ebano); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: 0.3s; }
         
@@ -137,7 +124,6 @@
             transition: 0.3s;
         }
 
-        /* --- 5. SECTIONS --- */
         .marquee { background: var(--canarinho); padding: 15px 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 2; }
         .marquee-content { display: inline-block; animation: scroll 25s linear infinite; }
         .marquee span { font-size: 1rem; color: var(--ebano); font-weight: 800; text-transform: uppercase; margin: 0 40px; letter-spacing: 1px; }
@@ -163,70 +149,82 @@
         .srv-desc { color: #aaa; font-size: 1rem; max-width: 400px; }
 
         .portfolio { background: var(--ebano); }
-        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
-        .case-item { display: block; text-decoration: none; margin-bottom: 40px; }
-        .case-img-wrap { width: 100%; aspect-ratio: 16/9; background: #1a1a1a; overflow: hidden; border-radius: 2px; margin-bottom: 20px; position: relative; }
-        .case-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; opacity: 0.9; }
-        .case-info { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        .case-title { font-size: 1.4rem; font-weight: 700; color: white; text-transform: uppercase; margin: 0; }
-        .case-cat { color: var(--canarinho); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ===== CASES (VERTICAL, PLAY 100PX, LOOK MONO) ===== */
+        .cases-title {font-size: clamp(2.3rem, 5vw, 4.5rem); line-height: 0.9; font-weight:900;text-align:center;letter-spacing:.04em;margin-bottom:22px}
+        .cases-title span{color:var(--canarinho)}
+        .cases-viewport{position:relative;overflow:hidden;padding:8px 0}
+        .cases-viewport::before,.cases-viewport::after{
+          content:"";position:absolute;top:0;bottom:0;width:9vw;z-index:3;pointer-events:none
+        }
+        .cases-viewport::before{left:-1px;background:linear-gradient(90deg,#000,transparent)}
+        .cases-viewport::after{right:-1px;background:linear-gradient(270deg,#000,transparent)}
+
+        .cases-track{display:flex;gap:28px;will-change:transform}
+        .case-slide{flex:0 0 360px}
+
+        .case-card{position:relative;display:block;width:100%;border-radius:24px;overflow:hidden;background:#111}
+        .case-thumb{
+            width:100%;aspect-ratio:4/5;object-fit:cover;display:block;
+            /* Visual idêntico ao print: azul -> branco */
+            filter: grayscale(100%) contrast(1.18) brightness(1.05);
+            transition: filter .28s ease;
+        }
+        .case-card:hover .case-thumb{ filter:none; }
+        .case-shade{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0) 48%, rgba(0,0,0,0.78) 100%)}
+
+        .case-play{
+            position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);
+            width:100px;height:100px;border-radius:50%;background:var(--canarinho);color:#000;
+            display:flex;align-items:center;justify-content:center;
+            box-shadow:0 14px 36px rgba(253,196,31,.35);
+            opacity:0;transition:opacity .25s ease, transform .25s ease;
+        }
+        .case-play svg{width:28px;height:28px;transform:translateX(2px)}
+        .case-card:hover .case-play{opacity:1;transform:translate(-50%,-50%) scale(1)}
+        @media (max-width:980px){ .case-play{opacity:1} }
+
+        .case-meta{position:absolute;left:22px;right:22px;bottom:18px;z-index:2}
+        .case-pill{
+            display:inline-block;background:var(--canarinho);color:#000;font-weight:900;
+            text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;
+            padding:10px 16px;border-radius:999px;margin-bottom:10px;
+            box-shadow:0 6px 18px rgba(253,196,31,.2);
+        }
+        .case-title{ color: var(--branco) !important; font-size:clamp(1.7rem,3vw,2.35rem);line-height:1.05;font-weight:900;text-transform:uppercase}
+        .case-sub{margin-top:6px;color:var(--canarinho);font-weight:700;font-size:1.05rem}
+
+        .cases-nav{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+        .cases-arrow{
+            width:44px;height:44px;border-radius:50%;border:1px solid var(--border);
+            background:rgba(0,0,0,.45);backdrop-filter:blur(4px);
+            display:flex;align-items:center;justify-content:center;pointer-events:auto;
+            transition:.2s;opacity:.9
+        }
+        .cases-arrow:hover{border-color:rgba(255,255,255,.6);background:rgba(0,0,0,.65)}
+        .cases-arrow svg{width:18px;height:18px}
 
         .special-projects { background: #080808; }
         .special-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
         .special-card { background: rgba(255,255,255,0.03); padding: 40px 30px; border: 1px solid var(--border); transition: 0.3s; }
-        .sp-icon { font-size: 2.5rem; color: var(--canarinho); margin-bottom: 20px; }
         .sp-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; }
         .sp-desc { font-size: 0.9rem; color: #999; line-height: 1.5; }
 
         .pillars { background: linear-gradient(to bottom, var(--ebano), #000); text-align: center; }
         .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
         .pillar-card { padding: 40px; border: 1px solid var(--border); }
-        .pillar-icon { font-size: 2.5rem; color: var(--canarinho); margin-bottom: 20px; }
 
-        .crazy-icon {
-    width: 40px;
-    height: 6px;
-    background: linear-gradient(90deg, var(--canarinho), var(--ceu-azul), var(--branco));
-    background-size: 300%;
-    animation: crazyShift 3s infinite linear;
-    margin-bottom: 20px;
-}
-@keyframes crazyShift {
-    0% {background-position:0% 50%;}
-    100% {background-position:100% 50%;}
-}
+        .crazy-icon { width: 40px; height: 6px; background: linear-gradient(90deg, var(--canarinho), var(--ceu-azul), var(--branco)); background-size: 300%; animation: crazyShift 3s infinite linear; margin-bottom: 20px; }
+        @keyframes crazyShift { 0% {background-position:0% 50%;} 100% {background-position:100% 50%;} }
 
-.extra-blink {
-            display: inline-block;
-            animation: extraGlow 1.8s ease-in-out infinite;
-        }
+        .extra-blink { display: inline-block; animation: extraGlow 1.8s ease-in-out infinite; }
+        @keyframes extraGlow { 0% { opacity: 1; text-shadow: 0 0 0 rgba(253,196,31,0); } 40% { opacity: 1; text-shadow: 0 0 14px rgba(253,196,31,0.75); } 60% { opacity: 0.7; text-shadow: 0 0 6px rgba(253,196,31,0.4); } 100% { opacity: 1; text-shadow: 0 0 0 rgba(253,196,31,0); } }
 
-        @keyframes extraGlow {
-            0% { opacity: 1; text-shadow: 0 0 0 rgba(253,196,31,0); }
-            40% { opacity: 1; text-shadow: 0 0 14px rgba(253,196,31,0.75); }
-            60% { opacity: 0.7; text-shadow: 0 0 6px rgba(253,196,31,0.4); }
-            100% { opacity: 1; text-shadow: 0 0 0 rgba(253,196,31,0); }
-        }
-
-        /* --- 7. FOOTER --- */
         footer { background: var(--canarinho); color: var(--ebano); padding: 100px 0 40px; position: relative; overflow: hidden; }
         .footer-top { text-align: center; margin-bottom: 80px; position: relative; z-index: 2; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 60px; }
-        
-        .footer-cta-title {
-            font-size: clamp(3rem, 10vw, 8rem); line-height: 0.85; font-weight: 900;
-            text-transform: uppercase; margin-bottom: 40px; color: var(--ebano);
-            letter-spacing: -0.04em; word-wrap: break-word; overflow-wrap: break-word;
-        }
-
-        .btn-big-footer {
-            display: inline-block; padding: 20px 60px; background: var(--ebano); color: var(--canarinho);
-            font-size: 1rem; font-weight: 800; text-transform: uppercase; text-decoration: none;
-            border-radius: 50px; transition: 0.3s; border: 2px solid var(--ebano);
-        }
-        .btn-big-footer:hover {
-            background: var(--canarinho);
-            color: var(--ebano);
-        }
+        .footer-cta-title { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.85; font-weight: 900; text-transform: uppercase; margin-bottom: 40px; color: var(--ebano); letter-spacing: -0.04em; word-wrap: break-word; overflow-wrap: break-word; }
+        .btn-big-footer { display: inline-block; padding: 20px 60px; background: var(--ebano); color: var(--canarinho); font-size: 1rem; font-weight: 800; text-transform: uppercase; text-decoration: none; border-radius: 50px; transition: 0.3s; border: 2px solid var(--ebano); }
+        .btn-big-footer:hover { background: var(--canarinho); color: var(--ebano); }
 
         .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding-bottom: 40px; }
         .footer-col h4 { font-size: 0.85rem; color: var(--ebano); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; opacity: 0.6; }
@@ -244,128 +242,91 @@
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- 8. MOBILE OPTIMIZATION (IOS PERFECT) --- */
         @media (max-width: 900px) {
-            /* 1. Margens Seguras (iPhone Notch/Edges) */
-            .container { 
-                width: 100%; 
-                padding-left: max(24px, env(safe-area-inset-left)); 
-                padding-right: max(24px, env(safe-area-inset-right)); 
-                box-sizing: border-box;
-            }
+            .container { width: 100%; padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); box-sizing: border-box; }
             .section-padding { padding: 70px 0; }
-            
-            /* 2. Header Mobile */
             header { padding: 20px 0; }
-            .menu-desktop { display: none; } /* Esconde menu desk */
-            .mobile-toggle { display: block; } /* Mostra hambúrguer */
-            
-            /* 3. Layout Stack (1 Coluna) */
-            .manifesto-grid, .portfolio-grid, .footer-info-grid, .special-grid, .pillars-grid, .stats, .footer-grid { 
-                grid-template-columns: 1fr !important; gap: 40px; 
-            }
-            
-            /* 4. Correção de Texto "Estourado" */
-            /* Usa VW (Viewport Width) para escalar o texto com a largura da tela */
-            h1.hero-title { 
-                font-size: 11vw; /* Escala fluida */
-                line-height: 1.1; 
-                word-break: break-word;
-            }
+            .menu-desktop { display: none; }
+            .mobile-toggle { display: block; }
+            .manifesto-grid, .footer-info-grid, .special-grid, .pillars-grid, .stats, .footer-grid { grid-template-columns: 1fr !important; gap: 40px; }
+            h1.hero-title { font-size: 11vw; line-height: 1.1; word-break: break-word; }
             .hero-desc { font-size: 1rem; padding: 0 10px; }
-
             .manifesto h2 { font-size: 2rem; line-height: 1.1; }
-            
-            /* 5. Footer Extraordinário Fix */
-            .footer-cta-title { 
-                font-size: 9vw; /* Ajuste milimétrico para caber na tela vertical */
-                line-height: 0.9; 
-                word-break: normal; 
-                hyphens: none;
-                overflow-wrap: anywhere;
-            }
+            .footer-cta-title { font-size: 9vw; line-height: 0.9; word-break: normal; hyphens: none; overflow-wrap: anywhere; }
             .btn-big-footer { width: 100%; text-align: center; }
             .footer-grid { gap: 40px; text-align: left; }
             .footer-copyright { flex-direction: column; gap: 15px; text-align: center; }
-
-            /* 6. Serviços */
             .service-card { grid-template-columns: 1fr; text-align: left; gap: 15px; padding: 40px 0; }
             .srv-title { font-size: 1.8rem; }
-            
-            /* 7. Performance */
             .cursor-dot, .cursor-glow, #canvas-container { display: none !important; }
             * { cursor: auto !important; }
         }
     
-.blink-tech-footer {
-    background: linear-gradient(
-        90deg,
-        #000000,
-        #3a2a00,
-        #FDC41F,
-        #3a2a00,
-        #000000
-    );
-    background-size: 400%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: footerPulse 8s ease-in-out infinite;
-    filter: drop-shadow(0 0 12px rgba(253,196,31,0.35));
-}
-
-@keyframes footerPulse {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-
-.service-card:hover .srv-desc {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-}
-.srv-desc {
-    display:inline-block;
-    transition: transform 0.3s ease;
-}
-
-
-        .pillars h2 {
-            display: inline-block;
-            transition: transform 0.35s var(--easing);
+        .blink-tech-footer {
+            background: linear-gradient(90deg, #000000, #3a2a00, #FDC41F, #3a2a00, #000000);
+            background-size: 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: footerPulse 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 12px rgba(253,196,31,0.35));
         }
-        .pillars h2:hover {
-            transform: scale(1.12);
-        }
+        @keyframes footerPulse { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
+        .service-card:hover .srv-desc { transform: scale(1.05); transition: transform 0.3s ease; }
+        .srv-desc { display:inline-block; transition: transform 0.3s ease; }
+        .pillars h2 { display: inline-block; transition: transform 0.35s var(--easing); }
+        .pillars h2:hover { transform: scale(1.12); }
+        .scroll-arrow { width: 28px; height: 28px; border-left: 3px solid transparent; border-bottom: 3px solid transparent; border-image: linear-gradient(135deg, #FEE08A, #FDC41F, #D49A10) 1; transform: rotate(-45deg); margin: 28px auto 0; animation: arrowFloat 1.8s ease-in-out infinite; }
+        @keyframes arrowFloat { 0% { transform: rotate(-45deg) translateY(0); opacity: 0.0; } 20% { opacity: 1; } 50% { transform: rotate(-45deg) translateY(8px); opacity: 1; } 100% { transform: rotate(-45deg) translateY(0); opacity: 0.3; } }
+        @media (min-width: 901px) { .scroll-arrow { margin-top: 40px; } }
     
-        /* Scroll arrow between hero and marquee (mobile-focused) */
-        .scroll-arrow {
-            width: 28px;
-            height: 28px;
-            border-left: 3px solid transparent;
-            border-bottom: 3px solid transparent;
-            border-image: linear-gradient(135deg, #FEE08A, #FDC41F, #D49A10) 1;
-            transform: rotate(-45deg);
-            margin: 28px auto 0;
-            animation: arrowFloat 1.8s ease-in-out infinite;
-        }
+/* ===== UX & Acessibilidade (inserido) ===== */
+:where(a, button).focus-visible, :where(.btn-header, .btn-primary, .btn-outline-white, .cases-arrow):focus-visible {
+    outline: 3px solid var(--canarinho);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+    .marquee-content { animation: none !important; }
+}
+.whatsapp-btn:focus-visible { box-shadow: 0 0 0 4px rgba(37,211,102,.35); }
+.case-card { will-change: transform; }
 
-        @keyframes arrowFloat {
-            0%   { transform: rotate(-45deg) translateY(0); opacity: 0.0; }
-            20%  { opacity: 1; }
-            50%  { transform: rotate(-45deg) translateY(8px); opacity: 1; }
-            100% { transform: rotate(-45deg) translateY(0); opacity: 0.3; }
-        }
+/* ===== Mobile polish (inserido) ===== */
+@media (max-width: 900px){
+  body { font-size: 17px; line-height: 1.6; }
+  h1.hero-title { line-height: 1.08; letter-spacing:-0.01em; }
 
-        @media (min-width: 901px) {
-            .scroll-arrow {
-                margin-top: 40px;
-            }
-        }
+  /* CTAs dedo-friendly */
+  .btn-primary, .btn-outline-white, .btn-header { 
+    width: 100%; padding: 18px 20px; border-radius: 10px;
+  }
+  .magnetic-wrap { display:block; }
 
-    </style>
+  /* Carrossel: largura e gap ideais */
+  .case-slide { flex: 0 0 76vw; }
+  .cases-track { gap: 16px; }
+  .case-play { width: 72px; height:72px; }
+
+  /* Contraste nos cards para legibilidade */
+  .case-shade { background: linear-gradient(to bottom, rgba(0,0,0,.05) 40%, rgba(0,0,0,.88) 100%); }
+  .case-title { text-shadow: 0 2px 16px rgba(0,0,0,.45); }
+
+  /* Footer organizado */
+  .footer-grid { gap: 28px !important; }
+  .footer-col a, .footer-col p { font-size: 1.05rem; }
+  .footer-col a { padding: 10px 0; display:inline-block; }
+
+  /* WhatsApp respeitando safe-area */
+  .whatsapp-btn { 
+    bottom: calc(20px + env(safe-area-inset-bottom)); 
+    right: 20px;
+  }
+}
+
+</style>
 </head>
 <body>
 
@@ -373,7 +334,7 @@
     <div class="cursor-dot"></div>
     <div class="cursor-glow"></div>
     <div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></div>
-    <a href="https://wa.me/5521986212411" class="whatsapp-btn" target="_blank"><i class="lni lni-whatsapp"></i></a>
+    <a href="https://wa.me/5521986212411" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="lni lni-whatsapp"></i></a>
 
     <div class="mobile-menu-overlay" id="mobileMenu">
         <a href="quem-somos.html" class="mobile-link" onclick="toggleMenu()">Quem Somos</a>
@@ -404,7 +365,7 @@
 
     <section class="hero">
         <div class="video-bg-container" style="position:absolute; inset:0; z-index:0;">
-            <video autoplay muted loop playsinline class="video-bg" style="width:100%; height:100%; object-fit:cover; opacity:0.35; filter:grayscale(100%) contrast(1.2);">
+            <video autoplay muted loop playsinline class="video-bg" style="width:100%; height:100%; object-fit:cover; opacity:0.35; filter:grayscale(100%) contrast(1.2);" preload="metadata" poster="hero-poster.jpg">
                 <source src="hero-loop.mp4" type="video/mp4">
             </video>
         </div>
@@ -418,9 +379,9 @@
     </section>
 
     <div class="marquee"><div class="marquee-content">
-                <span>• ESTRATÉGIA • CINEMA • PUBLICIDADE • STORYTELLING • TECNOLOGIA • </span>
-                <span>• ESTRATÉGIA • CINEMA • PUBLICIDADE • STORYTELLING • TECNOLOGIA • </span>
-            </div></div>
+        <span>• ESTRATÉGIA • CINEMA • PUBLICIDADE • STORYTELLING • TECNOLOGIA • </span>
+        <span>• ESTRATÉGIA • CINEMA • PUBLICIDADE • STORYTELLING • TECNOLOGIA • </span>
+    </div></div>
 
     <section id="sobre" class="section-padding manifesto">
         <div class="container manifesto-grid">
@@ -451,18 +412,66 @@
         </div>
     </section>
 
+    <!-- ====== CASES (Atualizado idêntico à referência) ====== -->
     <section id="cases" class="portfolio section-padding">
         <div class="container">
-            <h2 style="font-size:2.5rem; margin-bottom:50px">TRABALHOS <span class="key-highlight">SELECIONADOS</span></h2>
-            <div class="portfolio-grid">
-                <a target="_blank" href="https://vimeo.com/247166437?fl=ls&fe=ec" class="case-item reveal"><div class="case-img-wrap"><img src="case1.jpg" alt="Yamaha"></div><div class="case-info"><h3 class="case-title">VIOLÃO E BADEN POWELL: YAMAHA</h3><span class="case-cat">BRANDED CONTENT</span></div></a>
-                <a target="_blank" href="https://vimeo.com/191200205?share=copy&fl=sv&fe=ci" class="case-item reveal"><div class="case-img-wrap"><img src="case2.jpg" alt="Gallo"></div><div class="case-info"><h3 class="case-title">Gallo Portugal</h3><span class="case-cat">Sim! Publi • 3D Product</span></div></a>
-                <a target="_blank" href="https://vimeo.com/213565749?fl=pl&fe=sh" class="case-item reveal"><div class="case-img-wrap"><img src="case3.jpg" alt="UFC"></div><div class="case-info"><h3 class="case-title">NARRATIVAS QUE CONECTAM</h3><span class="case-cat">Sim! Content • Série</span></div></a>
-                <a target="_blank" href="https://vimeo.com/manage/videos/149660680?fl=pl&fe=ti" class="case-item reveal"><div class="case-img-wrap"><img src="case4.jpg" alt="Cientista"></div><div class="case-info"><h3 class="case-title">PUBLICIDADE</h3><span class="case-cat">Institucional</span></div></a>
+            <h2 class="cases-title">PROJETOS <span>SELECIONADOS</span></h2>
+
+            <div class="cases-viewport" id="casesViewport">
+                <!-- Corrected slides -->
+<div class="cases-track" id="casesTrack">
+    <div class="case-slide">
+        <a href="https://vimeo.com/247166437" class="case-card" data-vimeo>
+            <img src="case2.jpg" class="case-thumb" alt="Gallo Portugal" loading="lazy" decoding="async" sizes="(max-width: 900px) 76vw, 360px">
+            <div class="case-shade"></div>
+            <div class="case-play"><svg viewBox="0 0 24 24"><polygon points="8,6 20,12 8,18"/></svg></div>
+            <div class="case-meta">
+                <span class="case-pill">Publicidade</span>
+                <div class="case-title">GALLO PORTUGAL</div>
+                <div class="case-sub">Campanha Institucional</div>
             </div>
-            <div style="text-align:center; margin-top:60px"><a href="#" class="btn-outline-white">Ver <span class="key-highlight">Portfólio</span> Completo</a></div>
-        </div>
-    </section>
+        </a>
+    </div>
+    <div class="case-slide">
+        <a href="https://vimeo.com/247166437" class="case-card" data-vimeo>
+            <img src="case4.jpg" class="case-thumb" alt="Yamaha - Baden Powell" loading="lazy" decoding="async" sizes="(max-width: 900px) 76vw, 360px">
+            <div class="case-shade"></div>
+            <div class="case-play"><svg viewBox="0 0 24 24"><polygon points="8,6 20,12 8,18"/></svg></div>
+            <div class="case-meta">
+                <span class="case-pill">PUBLICIDADE</span>
+                <div class="case-title">BI-O DESODORANTE</div>
+                <div class="case-sub"></div>
+            </div>
+        </a>
+    </div>
+    <div class="case-slide">
+        <a href="https://vimeo.com/247166437" class="case-card" data-vimeo>
+            <img src="case3.jpg" class="case-thumb" alt="Narrativas" loading="lazy" decoding="async" sizes="(max-width: 900px) 76vw, 360px">
+            <div class="case-shade"></div>
+            <div class="case-play"><svg viewBox="0 0 24 24"><polygon points="8,6 20,12 8,18"/></svg></div>
+            <div class="case-meta">
+                <span class="case-pill">Sim! Content</span>
+                <div class="case-title">NARRATIVAS</div>
+                <div class="case-sub">Série • Conteúdo</div>
+            </div>
+        </a>
+    </div>
+    <div class="case-slide">
+        <a href="https://vimeo.com/247166437" class="case-card" data-vimeo>
+            <img src="case1.jpg" class="case-thumb" alt="Bi-O Desodorante" loading="lazy" decoding="async" sizes="(max-width: 900px) 76vw, 360px">
+            <div class="case-shade"></div>
+            <div class="case-play"><svg viewBox="0 0 24 24"><polygon points="8,6 20,12 8,18"/></svg></div>
+            <div class="case-meta">
+                <span class="case-pill">Branded Content</span>
+                <div class="case-title">YAMAHA</div>
+                <div class="case-sub">Violão e Baden Powell</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+</div>
+</section>
 
     <section id="especiais" class="special-projects section-padding" style="background:#080808">
         <div class="container">
@@ -500,15 +509,15 @@
                 </div>
                 <div class="footer-col">
                     <h4>RIO DE JANEIRO</h4>
-                    <p>Praça do Flamengo 66<br>Flamengo</p>
+                    <p>Praia do Flamengo 66<br>Flamengo</p>
                 </div>
                 <div class="footer-col">
                     <h4>CONTATO</h4>
                     <p>+55 21 98621-2411</p>
                     <div style="margin-top:15px">
-                        <a href="#">LINKEDIN</a>
-                        <a href="#">INSTAGRAM</a>
-                        <a href="#">VIMEO</a>
+                        <a href="#" aria-label="LinkedIn da GSIM">LINKEDIN</a>
+                        <a href="#" aria-label="Instagram da GSIM">INSTAGRAM</a>
+                        <a href="#" aria-label="Vimeo da GSIM">VIMEO</a>
                     </div>
                 </div>
             </div>
@@ -520,23 +529,8 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
-        // Parallax sutil nas imagens do portfólio
-        document.querySelectorAll('.case-img-wrap').forEach(container => {
-            const img = container.querySelector('img');
-            if (!img) return;
-            container.addEventListener('mousemove', (e) => {
-                const rect = container.getBoundingClientRect();
-                const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
-                const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-                img.style.transform = `scale(1.05) translate(${x * 10}px, ${y * 10}px)`;
-            });
-            container.addEventListener('mouseleave', () => {
-                img.style.transform = 'scale(1) translate(0, 0)';
-            });
-        });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    </script>
     <script>
         // Toggle Mobile Menu
         function toggleMenu() {
@@ -560,18 +554,8 @@
                 el.addEventListener('mouseenter', () => dot.style.transform = 'translate(-50%, -50%) scale(2)');
                 el.addEventListener('mouseleave', () => dot.style.transform = 'translate(-50%, -50%) scale(1)');
             });
-            
-            document.querySelectorAll('.magnetic-wrap').forEach(wrap => {
-                wrap.addEventListener('mousemove', (e) => {
-                    const pos = wrap.getBoundingClientRect();
-                    const x = e.clientX - pos.left - pos.width / 2;
-                    const y = e.clientY - pos.top - pos.height / 2;
-                    wrap.children[0].style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-                });
-                wrap.addEventListener('mouseleave', () => { wrap.children[0].style.transform = 'translate(0,0)'; });
-            });
 
-            // Three.js
+            // Three.js particles
             const canvasContainer = document.getElementById('canvas-container');
             if(canvasContainer) {
                 const scene = new THREE.Scene();
@@ -613,131 +597,196 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 
-<script>
-// Parallax sutil nas imagens do portfólio — versão fixa
-document.querySelectorAll('.case-img-wrap').forEach(container => {
-    const img = container.querySelector('img');
-    if (!img) return;
+    <!-- Modal de Vídeo -->
+    <style>
+      #videoModalOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 100000; }
+      #videoModal { width: min(92vw, 980px); aspect-ratio: 16/9; background: #000; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+      #videoModal iframe { width: 100%; height: 100%; border: 0; display:block; }
+      #videoModalClose { position: absolute; top: -44px; right: -4px; font-size: 34px; color: #fff; cursor: pointer; line-height: 1; user-select: none; }
+      @media (max-width: 480px) { #videoModal { width: 96vw; } #videoModalClose { top: -40px; right: 6px; } }
+    </style>
 
-    container.addEventListener('mousemove', e => {
-        const rect = container.getBoundingClientRect();
-        const x = (e.clientX - rect.left - rect.width/2) / rect.width;
-        const y = (e.clientY - rect.top - rect.height/2) / rect.height;
-        img.style.transform = `scale(1.08) translate(${x * 12}px, ${y * 12}px)`;
-    });
+    <div id="videoModalOverlay" aria-hidden="true">
+      <div id="videoModal" role="dialog" aria-label="Vídeo">
+        <div id="videoModalClose" aria-label="Fechar" title="Fechar">×</div>
+        <iframe id="videoModalFrame" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
 
-    container.addEventListener('mouseleave', () => {
-        img.style.transform = 'scale(1) translate(0, 0)';
-    });
-});
-</script>
-
-
-<!-- Video Modal (added, non-destructive) -->
-
-<style>
-/* --- Lightweight Video Modal (non-invasive) --- */
-#videoModalOverlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-  display: none; align-items: center; justify-content: center; z-index: 100000;
-}
-#videoModal {
-  width: min(92vw, 980px); aspect-ratio: 16/9; background: #000; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-}
-#videoModal iframe {
-  width: 100%; height: 100%; border: 0; display:block;
-}
-#videoModalClose {
-  position: absolute; top: -44px; right: -4px; font-size: 34px;
-  color: #fff; cursor: pointer; line-height: 1; user-select: none;
-}
-@media (max-width: 480px) {
-  #videoModal { width: 96vw; }
-  #videoModalClose { top: -40px; right: 6px; }
-}
-</style>
-
-<div id="videoModalOverlay" aria-hidden="true">
-  <div id="videoModal" role="dialog" aria-label="Vídeo">
-    <div id="videoModalClose" aria-label="Fechar" title="Fechar">×</div>
-    <iframe id="videoModalFrame" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-  </div>
-</div>
-
-<script>
+    <script>
+    
 (function(){
-  // Only enhance clicks on .case-item anchors
-  const overlay = document.getElementById('videoModalOverlay');
-  const frame   = document.getElementById('videoModalFrame');
-  const closeBtn= document.getElementById('videoModalClose');
+  const track = document.getElementById('casesTrack');
+  const viewport = document.getElementById('casesViewport');
+  if(!track || !viewport) return;
 
-  if(!overlay || !frame) return;
+  let speed = 1.125; // 2.5x mais rápido (0.45 * 2.5)
+  let pos = 0;
+  const gap = parseFloat(getComputedStyle(track).gap || '28');
 
-  // Extract Vimeo ID from a variety of URL formats
-  function vimeoIdFromUrl(url){
-    try{
-      const u = new URL(url);
-      // /manage/videos/149660680 or /149660680 or /video/149660680
-      const parts = u.pathname.split('/').filter(Boolean);
-      let id = null;
-      // Try to find a numeric segment
-      for (const p of parts) {
-        if (/^\d+$/.test(p)) { id = p; break; }
+  // Duplica slides para loop contínuo
+  Array.from(track.children).forEach(node => track.appendChild(node.cloneNode(true)));
+
+  function unit() {
+    const first = track.firstElementChild;
+    if(!first) return 0;
+    return first.getBoundingClientRect().width + gap;
+  }
+
+  let rafId;
+  let running = true;
+
+  function step(){
+    if (running) {
+      pos -= speed; // direita -> esquerda
+      track.style.transform = `translateX(${pos}px)`;
+      const u = unit();
+      if(u>0 && pos <= -u){
+        track.appendChild(track.firstElementChild);
+        pos += u;
+        track.style.transform = `translateX(${pos}px)`;
       }
-      return id;
-    }catch(e){ return null; }
-  }
-
-  function toEmbed(url){
-    const id = vimeoIdFromUrl(url);
-    if(!id) return null;
-    // Embed with minimal chrome, autoplay, playsinline; keep color close to brand
-    return `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0&playsinline=1`;
-  }
-
-  function openModal(embedUrl){
-    if(!embedUrl) return;
-    frame.src = embedUrl;
-    overlay.style.display = 'flex';
-    overlay.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal(){
-    overlay.style.display = 'none';
-    overlay.setAttribute('aria-hidden','true');
-    frame.src = ''; // stop playback
-    document.body.style.overflow = '';
-  }
-
-  // Close handlers
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
-  });
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  // Delegate clicks on case items
-  document.addEventListener('click', function(e){
-    const a = e.target.closest('a.case-item');
-    if(!a) return;
-
-    // allow Cmd/Ctrl click to open in new tab as usual
-    if (e.metaKey || e.ctrlKey) return;
-
-    const href = a.getAttribute('href');
-    if(!href || href === '#') return;
-
-    const embed = toEmbed(href);
-    if(embed){
-      e.preventDefault();
-      openModal(embed);
     }
-  }, true);
+    rafId = requestAnimationFrame(step);
+  }
+  rafId = requestAnimationFrame(step);
+
+  // Setas (mantidas)
+  const nextBtn = document.getElementById('nextCase');
+  const prevBtn = document.getElementById('prevCase');
+  if(nextBtn) nextBtn.addEventListener('click', ()=>{ pos -= 140; });
+  if(prevBtn) prevBtn.addEventListener('click', ()=>{ pos += 140; });
+
+  // Hover apenas desacelera levemente
+  viewport.addEventListener('mouseenter', ()=>{ speed = 0.60; });
+  viewport.addEventListener('mouseleave', ()=>{ speed = 1.125; });
+
+  // ====== TOUCH / DRAG (Modo B: segue o dedo exatamente e pausa; retoma ao soltar) ======
+  let dragging = false;
+  let startX = 0;
+  let dragDelta = 0;
+
+  function onTouchStart(clientX){
+    dragging = true;
+    startX = clientX;
+    dragDelta = 0;
+    running = false; // pausa o auto-scroll
+  }
+  function onTouchMove(clientX, e){
+    if(!dragging) return;
+    dragDelta = clientX - startX;
+    track.style.transform = `translateX(${pos + dragDelta}px)`;
+    if(e) e.preventDefault();
+  }
+  function onTouchEnd(){
+    if(!dragging) return;
+    pos = pos + dragDelta;
+    dragging = false;
+    dragDelta = 0;
+    running = true; // retoma o auto-scroll
+  }
+
+  // Suporte a touch
+  viewport.addEventListener('touchstart', (e)=>{
+    const t = e.touches[0];
+    onTouchStart(t.clientX);
+  }, {passive:true});
+
+  viewport.addEventListener('touchmove', (e)=>{
+    const t = e.touches[0];
+    onTouchMove(t.clientX, e);
+  }, {passive:false});
+
+  viewport.addEventListener('touchend', onTouchEnd);
+  viewport.addEventListener('touchcancel', onTouchEnd);
+
+  // Suporte a mouse drag (opcional, ajuda no desktop)
+  let mouseDown = false;
+  viewport.addEventListener('mousedown', (e)=>{ mouseDown = true; onTouchStart(e.clientX); });
+  window.addEventListener('mousemove', (e)=>{ if(mouseDown) onTouchMove(e.clientX, e); });
+  window.addEventListener('mouseup', ()=>{ if(mouseDown){ mouseDown=false; onTouchEnd(); } });
 })();
 </script>
 
+<script>
+
+// ===== UX/JS Inserido: Scroll lock no menu mobile + Modal Vimeo =====
+(function(){
+  const body = document.body;
+  const menu = document.getElementById('mobileMenu');
+
+  // Reescreve a função global toggleMenu mantendo compat
+  window.toggleMenu = function toggleMenu(){
+    menu.classList.toggle('active');
+    if(menu.classList.contains('active')){
+      body.dataset.prevOverflow = body.style.overflow || '';
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = body.dataset.prevOverflow || '';
+      delete body.dataset.prevOverflow;
+    }
+  };
+
+  // Modal Vimeo: abre anchors com [data-vimeo] no modal já existente
+  const overlay = document.getElementById('videoModalOverlay');
+  const frame = document.getElementById('videoModalFrame');
+  const closeBtn = document.getElementById('videoModalClose');
+
+  function parseVimeoId(url){
+    // Extrai ID de formatos: https://vimeo.com/123, https://vimeo.com/manage/videos/123 etc.
+    const m = url.match(/vimeo\.com\/(?:video\/|manage\/videos\/)?(\d+)/);
+    return m ? m[1] : null;
+  }
+
+  function openVimeoModal(href){
+    const id = parseVimeoId(href);
+    if(!id) return false;
+    const src = `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0`;
+    frame.setAttribute('src', src);
+    overlay.style.display = 'flex';
+    body.dataset.prevOverflow = body.style.overflow || '';
+    body.style.overflow = 'hidden';
+    return true;
+  }
+
+  function closeVimeoModal(){
+    overlay.style.display = 'none';
+    frame.setAttribute('src','');
+    body.style.overflow = body.dataset.prevOverflow || '';
+    delete body.dataset.prevOverflow;
+  }
+
+  document.querySelectorAll('a[data-vimeo]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      const href = a.getAttribute('href');
+      if(openVimeoModal(href)){
+        e.preventDefault();
+      }
+    }, {passive:false});
+  });
+
+  closeBtn?.addEventListener('click', closeVimeoModal, {passive:true});
+  overlay?.addEventListener('click', (e)=>{ if(e.target === overlay) closeVimeoModal(); }, {passive:true});
+
+  // Acessibilidade: Esc fecha o modal
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && overlay && overlay.style.display === 'flex') closeVimeoModal();
+  }, {passive:true});
+})();
+
+</script>
+<script>
+
+// Header compacto ao rolar (mobile/geral)
+(function(){
+  const header = document.querySelector('header');
+  if(!header) return;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    header.style.padding = (y > 12 ? '10px 0' : '20px 0');
+  }, {passive:true});
+})();
+
+</script>
 </body>
 </html>
