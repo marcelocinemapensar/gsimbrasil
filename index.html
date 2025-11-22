@@ -455,10 +455,10 @@
         <div class="container">
             <h2 style="font-size:2.5rem; margin-bottom:50px">TRABALHOS <span class="key-highlight">SELECIONADOS</span></h2>
             <div class="portfolio-grid">
-                <a href="#" class="case-item reveal"><div class="case-img-wrap"><img src="case1.jpg" alt="Yamaha"></div><div class="case-info"><h3 class="case-title">VIOLÃO E BADEN POWELL: YAMAHA</h3><span class="case-cat">BRANDED CONTENT</span></div></a>
-                <a href="#" class="case-item reveal"><div class="case-img-wrap"><img src="case2.jpg" alt="Gallo"></div><div class="case-info"><h3 class="case-title">Gallo Portugal</h3><span class="case-cat">Sim! Publi • 3D Product</span></div></a>
-                <a href="#" class="case-item reveal"><div class="case-img-wrap"><img src="case3.jpg" alt="UFC"></div><div class="case-info"><h3 class="case-title">NARRATIVAS QUE CONECTAM</h3><span class="case-cat">Sim! Content • Série</span></div></a>
-                <a href="#" class="case-item reveal"><div class="case-img-wrap"><img src="case4.jpg" alt="Cientista"></div><div class="case-info"><h3 class="case-title">PUBLICIDADE</h3><span class="case-cat">Institucional</span></div></a>
+                <a target="_blank" href="https://vimeo.com/247166437?fl=ls&fe=ec" class="case-item reveal"><div class="case-img-wrap"><img src="case1.jpg" alt="Yamaha"></div><div class="case-info"><h3 class="case-title">VIOLÃO E BADEN POWELL: YAMAHA</h3><span class="case-cat">BRANDED CONTENT</span></div></a>
+                <a target="_blank" href="https://vimeo.com/191200205?share=copy&fl=sv&fe=ci" class="case-item reveal"><div class="case-img-wrap"><img src="case2.jpg" alt="Gallo"></div><div class="case-info"><h3 class="case-title">Gallo Portugal</h3><span class="case-cat">Sim! Publi • 3D Product</span></div></a>
+                <a target="_blank" href="https://vimeo.com/213565749?fl=pl&fe=sh" class="case-item reveal"><div class="case-img-wrap"><img src="case3.jpg" alt="UFC"></div><div class="case-info"><h3 class="case-title">NARRATIVAS QUE CONECTAM</h3><span class="case-cat">Sim! Content • Série</span></div></a>
+                <a target="_blank" href="https://vimeo.com/manage/videos/149660680?fl=pl&fe=ti" class="case-item reveal"><div class="case-img-wrap"><img src="case4.jpg" alt="Cientista"></div><div class="case-info"><h3 class="case-title">PUBLICIDADE</h3><span class="case-cat">Institucional</span></div></a>
             </div>
             <div style="text-align:center; margin-top:60px"><a href="#" class="btn-outline-white">Ver <span class="key-highlight">Portfólio</span> Completo</a></div>
         </div>
@@ -630,6 +630,113 @@ document.querySelectorAll('.case-img-wrap').forEach(container => {
         img.style.transform = 'scale(1) translate(0, 0)';
     });
 });
+</script>
+
+
+<!-- Video Modal (added, non-destructive) -->
+
+<style>
+/* --- Lightweight Video Modal (non-invasive) --- */
+#videoModalOverlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  display: none; align-items: center; justify-content: center; z-index: 100000;
+}
+#videoModal {
+  width: min(92vw, 980px); aspect-ratio: 16/9; background: #000; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+#videoModal iframe {
+  width: 100%; height: 100%; border: 0; display:block;
+}
+#videoModalClose {
+  position: absolute; top: -44px; right: -4px; font-size: 34px;
+  color: #fff; cursor: pointer; line-height: 1; user-select: none;
+}
+@media (max-width: 480px) {
+  #videoModal { width: 96vw; }
+  #videoModalClose { top: -40px; right: 6px; }
+}
+</style>
+
+<div id="videoModalOverlay" aria-hidden="true">
+  <div id="videoModal" role="dialog" aria-label="Vídeo">
+    <div id="videoModalClose" aria-label="Fechar" title="Fechar">×</div>
+    <iframe id="videoModalFrame" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Only enhance clicks on .case-item anchors
+  const overlay = document.getElementById('videoModalOverlay');
+  const frame   = document.getElementById('videoModalFrame');
+  const closeBtn= document.getElementById('videoModalClose');
+
+  if(!overlay || !frame) return;
+
+  // Extract Vimeo ID from a variety of URL formats
+  function vimeoIdFromUrl(url){
+    try{
+      const u = new URL(url);
+      // /manage/videos/149660680 or /149660680 or /video/149660680
+      const parts = u.pathname.split('/').filter(Boolean);
+      let id = null;
+      // Try to find a numeric segment
+      for (const p of parts) {
+        if (/^\d+$/.test(p)) { id = p; break; }
+      }
+      return id;
+    }catch(e){ return null; }
+  }
+
+  function toEmbed(url){
+    const id = vimeoIdFromUrl(url);
+    if(!id) return null;
+    // Embed with minimal chrome, autoplay, playsinline; keep color close to brand
+    return `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0&playsinline=1`;
+  }
+
+  function openModal(embedUrl){
+    if(!embedUrl) return;
+    frame.src = embedUrl;
+    overlay.style.display = 'flex';
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(){
+    overlay.style.display = 'none';
+    overlay.setAttribute('aria-hidden','true');
+    frame.src = ''; // stop playback
+    document.body.style.overflow = '';
+  }
+
+  // Close handlers
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Delegate clicks on case items
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a.case-item');
+    if(!a) return;
+
+    // allow Cmd/Ctrl click to open in new tab as usual
+    if (e.metaKey || e.ctrlKey) return;
+
+    const href = a.getAttribute('href');
+    if(!href || href === '#') return;
+
+    const embed = toEmbed(href);
+    if(embed){
+      e.preventDefault();
+      openModal(embed);
+    }
+  }, true);
+})();
 </script>
 
 </body>
